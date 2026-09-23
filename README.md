@@ -2,7 +2,11 @@
 
 基于 Nuxt 4、Bootstrap 5 与 TypeScript 的研究方向网站，内容整理自《华科网页制作.docx》。视觉与页面布局参考 [MIT EvLab 网站](https://www.evlab.mit.edu/)，使用本项目的研究内容与图片。
 
-网站生成静态页面，可通过 GitHub Pages 发布。当前已准备发布流程；仓库创建、GitHub 登录与线上部署状态应以实际操作结果为准。
+网站生成静态页面，通过 GitHub Pages 自动发布。
+
+- 网站地址：[stay-cnsj.github.io/csl-website](https://stay-cnsj.github.io/csl-website/)
+- 源码仓库：[stay-cnsj/csl-website](https://github.com/stay-cnsj/csl-website)
+- 发布状态：[GitHub Actions](https://github.com/stay-cnsj/csl-website/actions)
 
 ## 本地运行
 
@@ -57,7 +61,7 @@ npm run generate
 | `stay-cnsj.github.io`        | `https://stay-cnsj.github.io/`             |
 | 其他名称，例如 `csl-website` | `https://stay-cnsj.github.io/csl-website/` |
 
-仓库名尚未确定时，项目地址可记为 `https://stay-cnsj.github.io/<repo>/`，其中 `<repo>` 替换为实际仓库名称。
+本项目使用 `csl-website` 仓库，发布路径为 `/csl-website/`。
 
 首次发布步骤：
 

@@ -1,0 +1,27 @@
+{
+  "name": "hust-csl-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev --host 0.0.0.0",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "bootstrap": "5.3.8",
+    "nuxt": "4.5.2",
+    "vue": "^3.5.22",
+    "vue-router": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.6",
+    "typescript": "^5.9.3",
+    "vue-tsc": "^3.1.0"
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.11.0"
+  }
+}

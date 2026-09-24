@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title description">
+  <title id="title">科学智能体流程示意配图 · 论文占位</title>
+  <desc id="description">概念流程：科学问题、假设生成、实验验证、结果分析依次连接。该图为论文占位示意，不代表实际研究结果。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto"><path d="M2 2 10 6 2 10" fill="none" stroke="#418879" stroke-width="2" stroke-linejoin="round"/></marker>
+  </defs>
+  <rect width="1200" height="760" fill="#f5f7f6"/>
+  <g font-family="'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif">
+    <rect x="72" y="70" width="8" height="40" fill="#bd6669"/>
+    <text x="102" y="102" fill="#54636b" font-size="30" font-weight="500">示意配图 · 论文占位</text>
+    <text x="72" y="200" fill="#172c34" font-size="48" font-weight="600">面向科学探索的智能体</text>
+    <text x="72" y="252" fill="#65777b" font-size="28">概念流程 / CONCEPTUAL WORKFLOW</text>
+    <g stroke-width="2">
+      <rect x="72" y="336" width="222" height="194" rx="10" fill="#e7f0ed" stroke="#76a597"/>
+      <rect x="350" y="336" width="222" height="194" rx="10" fill="#eeebf5" stroke="#a296c0"/>
+      <rect x="628" y="336" width="222" height="194" rx="10" fill="#e7f0ed" stroke="#76a597"/>
+      <rect x="906" y="336" width="222" height="194" rx="10" fill="#f4ebea" stroke="#bd9291"/>
+    </g>
+    <g font-size="28" font-weight="500">
+      <text x="96" y="379" fill="#418879">01</text>
+      <text x="374" y="379" fill="#8571a5">02</text>
+      <text x="652" y="379" fill="#418879">03</text>
+      <text x="930" y="379" fill="#ac6267">04</text>
+    </g>
+    <g fill="#172c34" font-size="36" font-weight="600" text-anchor="middle">
+      <text x="183" y="456">科学问题</text>
+      <text x="461" y="456">假设生成</text>
+      <text x="739" y="456">实验验证</text>
+      <text x="1017" y="456">结果分析</text>
+    </g>
+    <g fill="none" stroke="#418879" stroke-width="3" marker-end="url(#arrow)">
+      <path d="M303 433H337"/><path d="M581 433H615"/><path d="M859 433H893"/>
+    </g>
+    <path d="M72 660H1128" stroke="#d4deda" stroke-width="1"/>
+    <text x="72" y="709" fill="#65777b" font-size="28" letter-spacing="2">ILLUSTRATIVE PLACEHOLDER</text>
+  </g>
+</svg>

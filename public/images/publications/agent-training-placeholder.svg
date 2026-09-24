@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title description">
+  <title id="title">智能体训练流程示意配图 · 论文占位</title>
+  <desc id="description">概念流程：数据与任务进入训练与反馈，再进入记忆与更新，并循环返回训练。该图为论文占位示意，不代表实际研究结果。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M2 2 10 6 2 10" fill="none" stroke="#66d7c7" stroke-width="2" stroke-linejoin="round"/></marker>
+    <marker id="loop-arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto"><path d="M2 2 10 6 2 10" fill="none" stroke="#b7a0ef" stroke-width="2" stroke-linejoin="round"/></marker>
+  </defs>
+  <rect width="1200" height="760" fill="#111d30"/>
+  <g font-family="'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif">
+    <rect x="72" y="70" width="8" height="40" fill="#e27576"/>
+    <text x="102" y="102" fill="#d9e3ef" font-size="30" font-weight="500">示意配图 · 论文占位</text>
+    <text x="72" y="200" fill="#f3f7fb" font-size="48" font-weight="600">智能体训练与持续更新</text>
+    <text x="72" y="252" fill="#a8bbd0" font-size="28">概念流程 / CONCEPTUAL WORKFLOW</text>
+    <g fill="#192b40" stroke-width="2">
+      <rect x="72" y="332" width="280" height="160" rx="10" stroke="#66d7c7"/>
+      <rect x="460" y="332" width="280" height="160" rx="10" stroke="#66d7c7"/>
+      <rect x="848" y="332" width="280" height="160" rx="10" stroke="#b7a0ef"/>
+    </g>
+    <g fill="#9eb4cb" font-size="28" font-weight="500">
+      <text x="96" y="374">01</text><text x="484" y="374">02</text><text x="872" y="374">03</text>
+    </g>
+    <g fill="#f3f7fb" font-size="36" font-weight="600" text-anchor="middle">
+      <text x="212" y="446">数据与任务</text>
+      <text x="600" y="446">训练与反馈</text>
+      <text x="988" y="446">记忆与更新</text>
+    </g>
+    <g fill="none" stroke="#66d7c7" stroke-width="3" marker-end="url(#arrow)">
+      <path d="M366 412H439"/><path d="M754 412H827"/>
+    </g>
+    <path d="M988 506V570H600V512" fill="none" stroke="#b7a0ef" stroke-width="3" marker-end="url(#loop-arrow)"/>
+    <rect x="714" y="548" width="164" height="44" fill="#111d30"/>
+    <text x="796" y="581" fill="#cbb8f8" font-size="28" text-anchor="middle">循环更新</text>
+    <path d="M72 660H1128" stroke="#304258" stroke-width="1"/>
+    <text x="72" y="709" fill="#a8bbd0" font-size="28" letter-spacing="2">ILLUSTRATIVE PLACEHOLDER</text>
+  </g>
+</svg>

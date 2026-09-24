@@ -2,7 +2,9 @@
 
 成果数据统一维护在 `app/data/publications.ts`，展示组件为 `app/components/PublicationList.vue`。数组顺序就是网页顺序，可将最新成果放在最前面。
 
-目前参考材料未提供真实论文或成果记录，因此 `publications` 保持空数组，页面显示“研究论文将陆续发布。”。不要把示例记录加入正式数据。
+目前参考材料未提供真实论文或成果记录。根据用户要求，页面先发布两项明确标注的占位示例，分别对应智能体训练与优化、科研智能体与科学发现。占位内容仅用于展示版式，不代表已发表成果；没有虚构作者、期刊、年份或论文链接。
+
+收到真实论文后，直接替换这两条记录的内容与配图，并删除 `isPlaceholder: true`。如果删除所有记录，页面会显示“研究论文将陆续发布。”。
 
 ## 添加一项成果
 
@@ -13,25 +15,26 @@
 
 ## 字段说明
 
-| 字段                           | 类型                                                     | 用法                                                   |
-| ------------------------------ | -------------------------------------------------------- | ------------------------------------------------------ |
-| `id`                           | `string`                                                 | 必填，唯一且稳定的标识，建议使用小写英文和短横线       |
-| `title`                        | `string`                                                 | 必填，真实论文或成果标题                               |
-| `description`                  | `string`                                                 | 必填，简洁准确的成果说明；空字符串不会显示正文段落     |
-| `authors`                      | `string[]`                                               | 必填，按论文署名顺序填写；空数组不显示作者栏           |
-| `image`                        | 对象                                                     | 可选；没有图片时直接省略，不显示替代图                 |
-| `image.src`                    | `string`                                                 | 图片路径，推荐 `images/publications/文件名.png`        |
-| `image.alt`                    | `string`                                                 | 图片内容的文字说明                                     |
-| `image.width` / `image.height` | `number`                                                 | 可选，建议填写图片实际像素尺寸，保持比例并减少页面跳动 |
-| `highlights`                   | `{ label: string; text: string }[]`                      | 可选，逐条列出亮点；`label` 加粗，`text` 为说明        |
-| `venue`                        | `string`                                                 | 可选，会议或期刊名称                                   |
-| `year`                         | `number`                                                 | 可选，发表年份                                         |
-| `links`                        | `PublicationLink[]`                                      | 可选，只填写真实且有效的链接                           |
-| `links[].kind`                 | `"paper"`、`"code"`、`"project"`、`"dataset"`、`"other"` | 链接类别                                               |
-| `links[].label`                | `string`                                                 | 网页显示的链接文字，例如“论文”或“代码”                 |
-| `links[].href`                 | `string`                                                 | 对外 HTTPS 地址或本地文件路径                          |
+| 字段                           | 类型                                                     | 用法                                                     |
+| ------------------------------ | -------------------------------------------------------- | -------------------------------------------------------- |
+| `id`                           | `string`                                                 | 必填，唯一且稳定的标识，建议使用小写英文和短横线         |
+| `title`                        | `string`                                                 | 必填，真实论文或成果标题                                 |
+| `description`                  | `string`                                                 | 必填，简洁准确的成果说明；空字符串不会显示正文段落       |
+| `authors`                      | `string[]`                                               | 必填，按论文署名顺序填写；空数组不显示作者栏             |
+| `isPlaceholder`                | `boolean`                                                | 可选；为 `true` 时明确显示占位标记，正式论文应删除此字段 |
+| `image`                        | 对象                                                     | 可选；没有图片时直接省略，不显示替代图                   |
+| `image.src`                    | `string`                                                 | 图片路径，推荐 `images/publications/文件名.png`          |
+| `image.alt`                    | `string`                                                 | 图片内容的文字说明                                       |
+| `image.width` / `image.height` | `number`                                                 | 可选，建议填写图片实际像素尺寸，保持比例并减少页面跳动   |
+| `highlights`                   | `{ label: string; text: string }[]`                      | 可选，逐条列出亮点；`label` 加粗，`text` 为说明          |
+| `venue`                        | `string`                                                 | 可选，会议或期刊名称                                     |
+| `year`                         | `number`                                                 | 可选，发表年份                                           |
+| `links`                        | `PublicationLink[]`                                      | 可选，只填写真实且有效的链接                             |
+| `links[].kind`                 | `"paper"`、`"code"`、`"project"`、`"dataset"`、`"other"` | 链接类别                                                 |
+| `links[].label`                | `string`                                                 | 网页显示的链接文字，例如“论文”或“代码”                   |
+| `links[].href`                 | `string`                                                 | 对外 HTTPS 地址或本地文件路径                            |
 
-图片可以省略；亮点、年份、期刊与链接也只在提供实际内容时展示。不要为缺失信息写入“待填写”等占位文字。
+正式论文的图片可以省略；亮点、年份、期刊与链接也只在提供实际内容时展示。占位记录通过 `isPlaceholder` 统一显示提示，不在作者、期刊和链接字段中填入虚构内容。
 
 本地资源路径相对于 `public/`：例如 `public/papers/result.pdf` 在数据中填写为 `papers/result.pdf`。组件会自动添加 GitHub Pages 的仓库基础路径，请勿手动写入 `/仓库名/` 或 `public/`。外部图片与链接使用完整 HTTPS 地址。链接不会依据类别自动生成，必须填写可访问的 `href`。
 

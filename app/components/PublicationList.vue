@@ -39,6 +39,9 @@ function isExternalLink(path: string) {
       </figure>
 
       <div class="publication-copy">
+        <p v-if="publication.isPlaceholder" class="publication-placeholder">
+          占位示例 · 待补充正式论文
+        </p>
         <p
           v-if="publication.venue || publication.year"
           class="publication-meta"
@@ -68,6 +71,9 @@ function isExternalLink(path: string) {
         </ul>
         <p v-if="publication.authors.length" class="publication-authors">
           {{ publication.authors.join(", ") }}
+        </p>
+        <p v-else-if="publication.isPlaceholder" class="publication-authors">
+          作者与发表信息待补充
         </p>
         <ul
           v-if="publication.links?.length"
@@ -157,6 +163,19 @@ function isExternalLink(path: string) {
   color: #686868;
   font-size: 0.88rem;
   line-height: 1.5;
+}
+
+.publication-placeholder {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 5px 10px;
+  border: 1px solid #e6d9da;
+  border-radius: 4px;
+  color: #7b343a;
+  background: #faf6f6;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  letter-spacing: 0.025em;
 }
 
 .publication-title {

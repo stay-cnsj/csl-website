@@ -43,6 +43,8 @@ npm run generate
 | 关于实验室 | `/about/`     | `app/pages/about.vue`     |
 
 - 修改实验室名称、方向介绍、研究主题、导航与架构说明：编辑 `app/data/site.ts`。
+- 研究方向页的新文案维护在同文件的 `research` 和 `researchTopics`，与首页基础信息分开。
+- 添加论文与研究成果：编辑 `app/data/publications.ts`，配图放到 `public/images/publications/`；字段与步骤见 [研究成果维护](docs/publications.md)。
 - 替换研究架构图：更新 `public/images/research-framework.png`，保留同名文件即可；如比例或尺寸改变，同时更新 `app/pages/framework.vue` 中的图片尺寸与替代文字。
 - 调整颜色、字体、间距及响应式布局：编辑 `app/assets/css/main.css`。
 - 修改搜索结果中的标题与网站描述：检查 `nuxt.config.ts` 以及各页面的 `useSeoMeta`。

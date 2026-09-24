@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { site, researchTopics } from "~/data/site";
+import { research, researchTopics } from "~/data/site";
 useSeoMeta({
-  title: `研究方向 · ${site.name}`,
-  description: site.introduction,
+  title: `研究方向 · ${research.name}`,
+  description: research.introduction,
 });
 </script>
 
@@ -11,11 +11,12 @@ useSeoMeta({
     <PageBanner title="研究方向" english="Research" />
     <div class="research-columns">
       <section class="research-intro">
-        <h2>{{ site.name }}</h2>
-        <p class="section-english" lang="en">{{ site.englishName }}</p>
-        <p class="lead-copy">{{ site.introduction }}</p>
-        <p>{{ site.focus }}</p>
-        <p>{{ site.inspiration }}</p>
+        <h2>{{ research.name }}</h2>
+        <p class="section-english" lang="en">{{ research.englishName }}</p>
+        <p class="lead-copy">{{ research.introduction }}</p>
+        <p v-for="paragraph in research.overview" :key="paragraph">
+          {{ paragraph }}
+        </p>
       </section>
       <section class="research-topics" aria-label="研究主题">
         <h2 class="research-group-title">
@@ -44,9 +45,9 @@ useSeoMeta({
       <div class="content-width">
         <p class="eyebrow" lang="en">INTERDISCIPLINARY RESEARCH</p>
         <h2>交叉研究与应用</h2>
-        <p>{{ site.interdisciplinary }}</p>
+        <p>{{ research.interdisciplinary }}</p>
         <NuxtLink class="text-link" to="/framework/"
-          >查看完整研究架构 <span aria-hidden="true">↗</span></NuxtLink
+          >查看研究架构与成果 <span aria-hidden="true">↗</span></NuxtLink
         >
       </div>
     </section>

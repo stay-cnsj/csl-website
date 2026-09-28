@@ -144,6 +144,28 @@
           "href": "https://github.com/HarveyYi/SaFeR-VLM"
         }
       ]
+    },
+    {
+      "id": "paper-053290b9-0de2-4e78-896b-85907ba7d653",
+      "title": "Progressive Large-Scale Modeling via Temporal-Spatial Focus Connector for Micro-Action Recognition",
+      "authors": [
+        "Qiankun Li",
+        "Zhigang Zeng"
+      ],
+      "abstract": "Summary: This work addresses the difficulty of identifying brief human movements with weak motion signals. Its framework adapts the VideoMAEv2 Giant backbone to capture detailed video features and adds a Temporal-Spatial Connector that directs attention toward informative frames and image regions. Training proceeds through four stages: fitting a linear classifier, updating the complete network, optimizing the connector, and refining the final classification layer. The method also combines candidate labels from several models, using a large language model to reconcile their highest-ranked predictions and improve agreement across models. Evaluation on MA-52 yields a mean F1 score of 76.54%, placing the approach third in the 2025 Micro-Action Analysis Grand Challenge. The results support combining increased model capacity, staged optimization, and consensus-based prediction for recognizing subtle actions.",
+      "image": {
+        "src": "images/publications/upload-127432e8-fe51-45a7-8779-05e86e1eacd6.png",
+        "alt": "Framework for micro-action recognition showing progressive four-phase VideoMAEv2 training, a Temporal-Spatial Connector, and LLM-guided ensemble refinement.",
+        "width": 1720,
+        "height": 668
+      },
+      "links": [
+        {
+          "kind": "paper",
+          "label": "ACM MM 2025 · DOI",
+          "href": "https://doi.org/10.1145/3746027.3762095"
+        }
+      ]
     }
   ]
 }

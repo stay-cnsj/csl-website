@@ -2,15 +2,15 @@
 
 论文内容统一保存在 `public/content/publications.json`，通过网页编辑器 `/editor/` 维护。线上访问时保留网站原有的基础路径，例如 `https://stay-cnsj.github.io/csl-website/editor/`。列表顺序就是网页展示顺序。
 
-网站按“标题 → 作者 → Abstract → 论文及相关链接”展示每篇论文。桌面端图片与文字交替排列，手机端图片在前、正文在后。所有文字均按纯文本显示，不支持 HTML。
+网站按“标题 → 作者 → 会议或期刊、年份与页码 → Abstract → 论文及相关链接”展示每篇论文。只显示已填写的发表信息、摘要、配图和链接；有图片时，桌面端图片与文字交替排列，手机端图片在前、正文在后。所有文字均按纯文本显示，不支持 HTML。
 
-目前两篇记录仍是明确标注的占位示例，分别对应智能体训练与优化、科研智能体与科学发现。占位摘要和配图仅用于说明主题与版式，不代表真实论文或实验结果。作者和链接为空时，页面显示“作者待补充”和“论文链接待补充”。发布真实论文时，请替换标题、作者、Abstract、配图与真实链接，并移除占位标记。
+占位示例使用 `isPlaceholder: true` 明确标注，其摘要和配图仅用于说明主题与版式，不代表真实论文或实验结果。正式论文必须填写准确的标题和作者；尚未获得或未确认的摘要、配图、链接及发表信息可以留空，不需要设为占位示例，也不要用猜测的信息补齐。
 
 ## 通过网页编辑
 
 1. 打开 `/editor/`，读取当前论文列表。
 2. 新增、编辑或删除论文；调整顺序以决定主页的展示顺序。
-3. 按论文署名顺序填写作者，填写准确的 Abstract 和真实链接；上传论文配图并填写替代文字。图片与文字会在同一次提交中保存。
+3. 按论文署名顺序填写作者；仅填写已确认的会议或期刊、年份、页码、Abstract 和真实链接。可选上传论文配图；提供图片时必须填写替代文字。图片与文字会在同一次提交中保存。
 4. 检查草稿和预览后，使用自己的 GitHub 令牌保存到仓库。
 5. 保存成功后，网站会自动构建并部署，通常约 1 分钟更新。部署完成前，线上页面仍可能显示旧内容。
 
@@ -51,21 +51,24 @@
 | `publications[].id`            | `string`                                       | 必填，唯一且稳定，使用小写字母、数字和短横线                     |
 | `title`                        | `string`                                       | 必填，准确的论文标题                                             |
 | `authors`                      | `string[]`                                     | 必填，按实际署名顺序填写；仅占位记录可为空                       |
-| `abstract`                     | `string`                                       | 必填，准确的论文摘要；保留文字换行                               |
+| `abstract`                     | `string`                                       | 字段必填，可为 `""`；有摘要时准确填写，最多 20,000 字，保留文字换行 |
+| `venue`                        | `string`                                       | 可选，已确认的会议或期刊名称，最多 500 字                         |
+| `year`                         | `number`                                       | 可选，已确认的发表年份，1000–9999 的整数                         |
+| `pages`                        | `string`                                       | 可选，已确认的页码，例如 `14222-14228`，最多 100 字              |
 | `isPlaceholder`                | `boolean`                                      | 可选；`true` 显示占位提示，正式论文应删除该标记                  |
-| `image`                        | 对象                                           | 类型允许省略；编辑器要求正式论文提供配图                         |
+| `image`                        | 对象                                           | 可选；无配图时省略整个字段，提供时须满足所有图片校验             |
 | `image.src`                    | `string`                                       | 已上传图片的本地路径，或有效 HTTPS 图片地址                      |
 | `image.alt`                    | `string`                                       | 配图的准确文字说明                                               |
 | `image.width` / `image.height` | `number`                                       | 可选，实际像素尺寸                                               |
-| `links`                        | `PublicationLink[]`                            | 必填；仅占位记录可为空                                           |
+| `links`                        | `PublicationLink[]`                            | 字段必填，可为 `[]`，最多 10 个；仅填写已确认的链接              |
 | `links[].kind`                 | `paper`、`code`、`project`、`dataset`、`other` | 链接类别                                                         |
 | `links[].label`                | `string`                                       | 显示文字，例如“论文”或“代码”                                     |
 | `links[].href`                 | `string`                                       | 真实、完整的 HTTPS 地址                                          |
 
-不再使用 `description`、`highlights`、`venue` 或 `year` 字段。不要在缺少真实材料时填入虚构作者、链接、实验数据或发表信息。
+保持 `schemaVersion: 1`，未填写 `venue`、`year`、`pages` 的旧记录仍可正常读取和编辑。可选发表信息未确认时省略对应字段；已填写的 `venue` 和 `pages` 不能是空白文字。DOI 使用 `links` 中的论文链接，例如 `{"kind":"paper","label":"DOI","href":"https://doi.org/10.1145/3746027.3762095"}`，不需要独立的 DOI 字段。不使用 `description` 或 `highlights` 字段。不要在缺少真实材料时填入虚构作者、链接、实验数据或发表信息。
 
-本地图片放在 `public/images/publications/`，数据中填写 `images/publications/文件名.png`；组件会添加网站基础路径，请勿手动写入 `public/` 或 `/csl-website/`。当前两张 SVG 是已有的占位流程图，正式论文应替换为经确认的论文配图。
+本地图片放在 `public/images/publications/`，数据中填写 `images/publications/文件名.png`；组件会添加网站基础路径，请勿手动写入 `public/` 或 `/csl-website/`。已有的占位流程图不能作为正式论文配图；没有经确认的配图时直接省略图片。链接仍只允许不含用户名或密码的 HTTPS 地址，本地图片路径不能越出论文图片目录。
 
 ## 手动维护与检查
 
-也可直接编辑 JSON，并将图片加入对应目录。提交前检查桌面与手机的显示效果，运行 `npm run typecheck` 和 `npm run generate`。如需安装项目依赖，使用 `cnpm i --by=npm`，遵循仓库的 `package-lock.json`。
+也可直接编辑 JSON，并将图片加入对应目录。提交前检查桌面与手机的显示效果，运行 `npm test`、`npm run typecheck` 和 `npm run generate`。如需安装项目依赖，使用 `cnpm i --by=npm`，遵循仓库的 `package-lock.json`。

@@ -2,32 +2,171 @@
   "schemaVersion": 1,
   "publications": [
     {
-      "id": "placeholder-agent-training",
-      "title": "智能体训练与优化：从任务学习到持续演进",
-      "authors": [],
-      "abstract": "本条为论文展示占位，主题取自实验室研究方向。后续将以正式论文摘要与配图替换，介绍智能体在训练、反馈与持续学习方面的研究工作。以下内容仅展示主题与排版，不代表已发表成果。",
-      "isPlaceholder": true,
-      "image": {
-        "src": "images/publications/agent-training-placeholder.svg",
-        "alt": "智能体训练流程示意配图，展示数据与任务、训练与反馈、记忆与更新；用于论文占位",
-        "width": 1200,
-        "height": 760
-      },
+      "id": "safety-helpfulness-ceiling-2026",
+      "title": "Explaining and Breaking the Safety-Helpfulness Ceiling via Preference Dimensional Expansion",
+      "authors": [
+        "ShiYing Huang",
+        "Liang Lin",
+        "Yuer Li",
+        "Kaiwen Luo",
+        "Zhenhong Zhou",
+        "An Zhang",
+        "Junhao Dong",
+        "Kun Wang",
+        "Zhigang Zeng"
+      ],
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)",
+      "year": 2026,
+      "abstract": "",
+      "links": [
+        {
+          "kind": "paper",
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2605.11679"
+        }
+      ]
+    },
+    {
+      "id": "omni-safety-2026",
+      "title": "Omni-Safety under Cross-Modality Conflict: Vulnerabilities, Dynamic Mechanisms and Efficient Alignment",
+      "authors": [
+        "Kun Wang",
+        "Zherui Li",
+        "Zhenhong Zhou",
+        "Yitong Zhang",
+        "Yan Mi",
+        "Kun Yang",
+        "Yiming Zhang",
+        "Junhao Dong",
+        "Zhongxiang Sun",
+        "Qiankun Li",
+        "Yang Liu"
+      ],
+      "venue": "Advances in Neural Information Processing Systems (NeurIPS)",
+      "year": 2026,
+      "abstract": "",
+      "links": [
+        {
+          "kind": "paper",
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2602.10161"
+        }
+      ]
+    },
+    {
+      "id": "safer-steer-2026",
+      "title": "SaFeR-Steer: Evolving Multi-Turn MLLMs via Synthetic Bootstrapping and Feedback Dynamics",
+      "authors": [
+        "Haolong Hu",
+        "Hanyu Li",
+        "Tiancheng He",
+        "Huahui Yi",
+        "An Zhang",
+        "Qiankun Li",
+        "Kun Wang",
+        "Yang Liu",
+        "Zhigang Zeng"
+      ],
+      "venue": "Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+      "year": 2026,
+      "abstract": "",
+      "links": [
+        {
+          "kind": "paper",
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2604.16358"
+        }
+      ]
+    },
+    {
+      "id": "knowledge-conflict-reasoning-2026",
+      "title": "Diagnosing Knowledge Conflict in Multimodal Long-Chain Reasoning",
+      "authors": [
+        "Jing Tang",
+        "Kun Wang",
+        "Haolang Lu",
+        "Hongjin Chen",
+        "KaiTao Chen",
+        "Zhongxiang Sun",
+        "Qiankun Li",
+        "Lingjuan Lyu",
+        "Guoshun Nan",
+        "Zhigang Zeng"
+      ],
+      "venue": "Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+      "year": 2026,
+      "abstract": "",
+      "links": [
+        {
+          "kind": "paper",
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2602.14518"
+        }
+      ]
+    },
+    {
+      "id": "safer-toolkit-2026",
+      "title": "SaFeR-ToolKit: Structured Reasoning via Virtual Tool Calling for Multimodal Safety",
+      "authors": [
+        "Zixuan Xu",
+        "Tiancheng He",
+        "Huahui Yi",
+        "Kun Wang",
+        "Xi Chen",
+        "Gongli Xi",
+        "Qiankun Li",
+        "Kang Li",
+        "Yang Liu",
+        "Zhigang Zeng"
+      ],
+      "venue": "Asia-Pacific Chapter of the Association for Computational Linguistics and International Joint Conference on Natural Language Processing (AACL-IJCNLP)",
+      "year": 2026,
+      "abstract": "",
+      "links": [
+        {
+          "kind": "paper",
+          "label": "arXiv",
+          "href": "https://arxiv.org/abs/2603.02635"
+        }
+      ]
+    },
+    {
+      "id": "safety-aware-rollouts-2026",
+      "title": "Safety-Aware Rollouts with Self-Reflection and Structured Rewards",
+      "authors": [
+        "Kun Wang",
+        "Hanyu Li",
+        "Tiancheng He",
+        "Huahui Yi",
+        "Zhigang Zeng"
+      ],
+      "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+      "year": 2026,
+      "abstract": "",
       "links": []
     },
     {
-      "id": "placeholder-science-agent",
-      "title": "科研智能体与科学发现：从问题到实验反馈",
-      "authors": [],
-      "abstract": "本条为论文展示占位，主题对应 AI4S 与科学发现方向。后续将以正式论文材料替换，介绍科研智能体在问题分析、假设生成与实验验证中的研究工作。配图为概念流程示意，不包含真实实验结果。",
-      "isPlaceholder": true,
-      "image": {
-        "src": "images/publications/science-agent-placeholder.svg",
-        "alt": "科学发现流程示意配图，展示科学问题、假设生成、实验验证与结果分析；用于论文占位",
-        "width": 1200,
-        "height": 760
-      },
-      "links": []
+      "id": "temporal-spatial-focus-connector-2025",
+      "title": "Progressive Large-Scale Modeling via Temporal-Spatial Focus Connector for Micro-Action Recognition",
+      "authors": [
+        "Qiankun Li",
+        "Qiupu Chen",
+        "Huabao Chen",
+        "Feng He",
+        "Depeng Li",
+        "Zhigang Zeng"
+      ],
+      "venue": "Proceedings of the 33rd ACM International Conference on Multimedia (ACM MM)",
+      "year": 2025,
+      "abstract": "",
+      "links": [
+        {
+          "kind": "paper",
+          "label": "DOI",
+          "href": "https://doi.org/10.1145/3746027.3762095"
+        }
+      ],
+      "pages": "14222-14228"
     }
   ]
 }

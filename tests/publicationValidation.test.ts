@@ -81,22 +81,93 @@ test("local image paths cannot escape the publication image directory", () => {
   }
 });
 
-test("parser accepts valid data and returns a separate copy", () => {
+test("parser preserves legacy records without citation fields and returns a separate copy", () => {
   const original = validDocument();
   assert.deepEqual(validatePublicationDocument(original), []);
   const parsed = parsePublicationDocument(original);
+  assert.deepEqual(parsed, original);
   parsed.publications[0]!.authors.push("Additional author");
   assert.equal(original.publications[0]!.authors.length, 2);
 });
 
-test("real publications require authors, image and links; placeholders are explicitly exempt", () => {
+test("real publications may omit an abstract, image and links without becoming placeholders", () => {
   const doc = validDocument();
-  doc.publications[0]!.authors = [];
+  doc.publications[0]!.abstract = "";
   doc.publications[0]!.links = [];
   delete doc.publications[0]!.image;
-  assert.equal(validatePublicationDocument(doc).length, 3);
+  assert.deepEqual(validatePublicationDocument(doc), []);
+  assert.deepEqual(parsePublicationDocument(doc), doc);
+  assert.equal(doc.publications[0]!.isPlaceholder, undefined);
+
+  doc.publications[0]!.authors = [];
+  assert.match(validatePublicationDocument(doc).join("\n"), /作者/);
   doc.publications[0]!.isPlaceholder = true;
   assert.deepEqual(validatePublicationDocument(doc), []);
+});
+
+test("citation metadata is optional and preserves confirmed venue, year and pages", () => {
+  const doc = validDocument();
+  Object.assign(doc.publications[0]!, {
+    venue: "Proceedings of the 33rd ACM International Conference on Multimedia (ACM MM)",
+    year: 2025,
+    pages: "14222-14228",
+  });
+  assert.deepEqual(parsePublicationDocument(doc), doc);
+  for (const year of [1000, 9999]) {
+    doc.publications[0]!.year = year;
+    assert.deepEqual(validatePublicationDocument(doc), []);
+  }
+});
+
+test("provided citation metadata must have valid types and stay within limits", () => {
+  const invalidFields = [
+    { venue: null },
+    { venue: 2026 },
+    { venue: " " },
+    { venue: "x".repeat(501) },
+    { year: "2026" },
+    { year: null },
+    { year: 999 },
+    { year: 10000 },
+    { year: 2026.5 },
+    { pages: null },
+    { pages: 123 },
+    { pages: " " },
+    { pages: "x".repeat(101) },
+  ];
+  for (const fields of invalidFields) {
+    const doc = validDocument();
+    Object.assign(doc.publications[0]!, fields);
+    assert.ok(validatePublicationDocument(doc).length > 0, JSON.stringify(fields));
+    assert.throws(() => parsePublicationDocument(doc));
+  }
+});
+
+test("optional material still rejects malformed data and unsafe addresses when supplied", () => {
+  const invalidFields = [
+    { abstract: undefined },
+    { abstract: null },
+    { abstract: 123 },
+    { abstract: "x".repeat(20001) },
+    { image: null },
+    { image: [] },
+    { image: {} },
+    { image: { src: "images/publications/../secret.png", alt: "Diagram" } },
+    { image: { src: "https://example.org/image.png", alt: "" } },
+    { links: undefined },
+    { links: null },
+    { links: {} },
+    { links: [null] },
+    { links: [{ kind: "paper", label: "论文", href: "javascript:alert(1)" }] },
+    { links: [{ kind: "paper", label: "论文", href: "https://user:password@example.org" }] },
+    { links: [{ kind: "paper", label: "论文", href: ["https://example.org"] }] },
+  ];
+  for (const fields of invalidFields) {
+    const doc = validDocument();
+    Object.assign(doc.publications[0]!, fields);
+    assert.ok(validatePublicationDocument(doc).length > 0, JSON.stringify(fields));
+    assert.throws(() => parsePublicationDocument(doc));
+  }
 });
 
 test("duplicate ids and malformed records cannot be published", () => {

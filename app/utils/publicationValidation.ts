@@ -48,8 +48,17 @@ export function validatePublicationDocument(input: unknown): string[] {
     ids.add(p.id);
     if (!text(p.title, 240))
       errors.push(`${prefix}请填写标题（最多 240 字）。`);
-    if (!text(p.abstract, 20000))
-      errors.push(`${prefix}请填写 Abstract（最多 20,000 字）。`);
+    if (typeof p.abstract !== "string" || p.abstract.length > 20000)
+      errors.push(`${prefix}Abstract 须为文字，可留空（最多 20,000 字）。`);
+    if (p.venue !== undefined && !text(p.venue, 500))
+      errors.push(`${prefix}会议或期刊须为文字（最多 500 字）。`);
+    if (
+      p.year !== undefined &&
+      (!Number.isInteger(p.year) || p.year < 1000 || p.year > 9999)
+    )
+      errors.push(`${prefix}年份须为 1000–9999 的整数。`);
+    if (p.pages !== undefined && !text(p.pages, 100))
+      errors.push(`${prefix}页码须为文字（最多 100 字）。`);
     if (p.isPlaceholder !== undefined && typeof p.isPlaceholder !== "boolean")
       errors.push(`${prefix}占位标记无效。`);
     if (
@@ -59,8 +68,12 @@ export function validatePublicationDocument(input: unknown): string[] {
       (!p.isPlaceholder && p.authors.length === 0)
     )
       errors.push(`${prefix}请按顺序填写作者（每行一位）。`);
-    if (!p.image && !p.isPlaceholder) errors.push(`${prefix}请添加论文图片。`);
-    if (p.image) {
+    if (
+      p.image !== undefined &&
+      (!p.image || typeof p.image !== "object" || Array.isArray(p.image))
+    ) {
+      errors.push(`${prefix}图片格式不正确。`);
+    } else if (p.image) {
       if (typeof p.image.src !== "string" || !isSafeImageSource(p.image.src))
         errors.push(`${prefix}图片须为 HTTPS 地址或已上传的论文图片。`);
       if (!text(p.image.alt, 500)) errors.push(`${prefix}请填写图片说明。`);
@@ -72,12 +85,8 @@ export function validatePublicationDocument(input: unknown): string[] {
           errors.push(`${prefix}图片尺寸无效。`);
       }
     }
-    if (
-      !Array.isArray(p.links) ||
-      p.links.length > 10 ||
-      (!p.isPlaceholder && p.links.length === 0)
-    ) {
-      errors.push(`${prefix}请添加至少一个论文链接（最多 10 个）。`);
+    if (!Array.isArray(p.links) || p.links.length > 10) {
+      errors.push(`${prefix}链接须为列表，可留空（最多 10 个）。`);
     } else if (
       p.links.some(
         (link) =>
@@ -86,6 +95,7 @@ export function validatePublicationDocument(input: unknown): string[] {
             link.kind,
           ) ||
           !text(link.label, 60) ||
+          typeof link.href !== "string" ||
           !isHttpsUrl(link.href),
       )
     ) {

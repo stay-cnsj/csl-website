@@ -2,32 +2,148 @@
   "schemaVersion": 1,
   "publications": [
     {
-      "id": "placeholder-agent-training",
-      "title": "智能体训练与优化：从任务学习到持续演进",
-      "authors": [],
-      "abstract": "本条为论文展示占位，主题取自实验室研究方向。后续将以正式论文摘要与配图替换，介绍智能体在训练、反馈与持续学习方面的研究工作。以下内容仅展示主题与排版，不代表已发表成果。",
-      "isPlaceholder": true,
+      "id": "paper-62fa9c93-160c-4348-96c8-57b0c36ea188",
+      "title": "Explaining and Breaking the Safety-Helpfulness Ceiling via Preference Dimensional Expansion",
+      "authors": [
+        "ShiYing Huang",
+        "Kun Wang",
+        "Zhigang Zeng"
+      ],
+      "abstract": "Summary: This study investigates why language models struggle to improve several human preferences at once. The authors argue that the attainable rewards are constrained by the question itself: sampling more responses cannot necessarily overcome the limits imposed by a prompt focused on one objective. They introduce MORA (Multi-Objective Reward Assimilation), which identifies prompts associated with a single reward dimension and rewrites them to express additional objectives. This intervention broadens the range of outcomes available during alignment, rather than only adjusting how competing rewards are balanced during training. Experiments cover helpfulness, harmlessness, and truthfulness under both sequential and simultaneous optimization. Sequential alignment produces improvements of 5% to 12.4% for individual preferences, with particularly strong gains in harmlessness. Simultaneous alignment raises the average overall reward by 4.6%, supporting prompt diversification as a way to reduce conflicts among alignment objectives.",
       "image": {
-        "src": "images/publications/agent-training-placeholder.svg",
-        "alt": "智能体训练流程示意配图，展示数据与任务、训练与反馈、记忆与更新；用于论文占位",
-        "width": 1200,
-        "height": 760
+        "src": "images/publications/upload-b137936b-1773-4ba4-9eb3-e0c6973cdfbe.png",
+        "alt": "MORA workflow for finding difficult prompts, combining intents, collecting feedback, selecting response pairs, and preference training.",
+        "width": 2200,
+        "height": 1244
       },
-      "links": []
+      "links": [
+        {
+          "kind": "paper",
+          "label": "NeurIPS 2026 · arXiv",
+          "href": "https://arxiv.org/abs/2605.11679"
+        }
+      ]
     },
     {
-      "id": "placeholder-science-agent",
-      "title": "科研智能体与科学发现：从问题到实验反馈",
-      "authors": [],
-      "abstract": "本条为论文展示占位，主题对应 AI4S 与科学发现方向。后续将以正式论文材料替换，介绍科研智能体在问题分析、假设生成与实验验证中的研究工作。配图为概念流程示意，不包含真实实验结果。",
-      "isPlaceholder": true,
+      "id": "paper-319cf2d3-0923-4238-9def-0a7bd5b4ad0b",
+      "title": "Omni-Safety under Cross-Modality Conflict: Vulnerabilities, Dynamic Mechanisms and Efficient Alignment",
+      "authors": [
+        "Kun Wang",
+        "Qiankun Li"
+      ],
+      "abstract": "Omni-modal Large Language Models (OLLMs) greatly expand LLMs' multimodal capabilities but also introduce cross-modal safety risks. However, a systematic understanding of vulnerabilities in omni-modal interactions remains lacking. To bridge this gap, we establish a modality-semantics decoupling principle and construct the AdvBench-Omni dataset, which reveals a significant vulnerability in OLLMs. Mechanistic analysis uncovers a Mid-layer Dissolution phenomenon driven by refusal vector magnitude shrinkage, alongside the existence of a modal-invariant pure refusal direction. Inspired by these insights, we extract a golden refusal vector using Singular Value Decomposition and propose OmniSteer, which utilizes lightweight adapters to modulate intervention intensity adaptively. Extensive experiments show that our method not only increases the Refusal Success Rate against harmful inputs from 69.9% to 91.2%, but also effectively preserves the general capabilities across all modalities. Our code is available at: https://github.com/zhrli324/omni-safety-research.\n\nSource: Kun Wang et al., arXiv:2602.10161 (CC BY 4.0).",
       "image": {
-        "src": "images/publications/science-agent-placeholder.svg",
-        "alt": "科学发现流程示意配图，展示科学问题、假设生成、实验验证与结果分析；用于论文占位",
-        "width": 1200,
-        "height": 760
+        "src": "images/publications/upload-370269c4-bb66-4386-9c69-1dcc5dd3a524.png",
+        "alt": "AdvBench-Omni dataset construction through direct rendering and semantic separation across eleven modality combinations.",
+        "width": 2200,
+        "height": 1944
       },
-      "links": []
+      "links": [
+        {
+          "kind": "paper",
+          "label": "NeurIPS 2026 · arXiv",
+          "href": "https://arxiv.org/abs/2602.10161"
+        },
+        {
+          "kind": "other",
+          "label": "CC BY 4.0",
+          "href": "https://creativecommons.org/licenses/by/4.0/"
+        }
+      ]
+    },
+    {
+      "id": "paper-872e1746-728c-4c97-8bf8-fdadea849adf",
+      "title": "SaFeR-Steer: Evolving Multi-Turn MLLMs via Synthetic Bootstrapping and Feedback Dynamics",
+      "authors": [
+        "Tiancheng He",
+        "Qiankun Li",
+        "Kun Wang",
+        "Zhigang Zeng"
+      ],
+      "abstract": "Summary: SaFeR-Steer addresses the loss of safety that multimodal assistants can experience as conversations grow longer and adversarial requests evolve. Its training procedure progressively generates synthetic conversations and uses a tutor within GRPO to challenge and guide one student model with adaptive attacks. A trajectory-level reward incorporates both the weakest turn and the average turn score, ensuring that an unsafe or otherwise poor response affects evaluation of the entire dialogue. The work introduces STEER, comprising 12,934 supervised training dialogues, 2,000 reinforcement-learning dialogues, and 3,227 benchmark dialogues across one to ten turns. Experiments with Qwen2.5-VL models containing 3B and 7B parameters show improvements in safety and helpfulness for single-turn and multi-turn interactions. For multi-turn evaluation, the reported safety scores rise from 12.55 to 55.58 and from 24.66 to 64.89, respectively; failures also occur later in conversations.",
+      "image": {
+        "src": "images/publications/upload-ec7cd2c2-7085-4d09-b886-2da90c3634cc.png",
+        "alt": "SaFeR-Steer training framework with intent reconstruction, synthetic bootstrapping, and tutor-guided reinforcement learning.",
+        "width": 2200,
+        "height": 684
+      },
+      "links": [
+        {
+          "kind": "paper",
+          "label": "EMNLP 2026 · arXiv",
+          "href": "https://arxiv.org/abs/2604.16358"
+        }
+      ]
+    },
+    {
+      "id": "paper-461174a1-c087-44e0-91a3-f9e121639812",
+      "title": "Diagnosing Knowledge Conflict in Multimodal Long-Chain Reasoning",
+      "authors": [
+        "Kun Wang",
+        "Qiankun Li",
+        "Zhigang Zeng"
+      ],
+      "abstract": "Summary: This study examines why vision-language systems produce faulty answers during extended reasoning when their sources of information disagree. The authors separate contradictions already present in the input from those that become consequential as reasoning unfolds. By inspecting hidden representations, they find that disagreement categories can be distinguished with linear probes and that the clearest signals arise in intermediate and deeper layers. Combining evidence across generated tokens also helps recover which kind of conflict initiated a reasoning trajectory. Finally, interventions expose an imbalance: it is easier to strengthen the system's existing preference for one source than to make it favor the competing source. These observations offer a framework for investigating and influencing reasoning failures caused by incompatible knowledge.",
+      "image": {
+        "src": "images/publications/upload-e7eb02e2-e547-431b-bdbb-d7c36f9c0ed9.png",
+        "alt": "Original diagram connecting visual, textual, and prior knowledge to objective and effective conflicts in long-chain reasoning.",
+        "width": 2000,
+        "height": 1565
+      },
+      "links": [
+        {
+          "kind": "paper",
+          "label": "EMNLP 2026 · arXiv",
+          "href": "https://arxiv.org/abs/2602.14518"
+        }
+      ]
+    },
+    {
+      "id": "paper-dec64998-2b55-4d18-852e-6dd19498efdb",
+      "title": "SaFeR-ToolKit: Structured Reasoning via Virtual Tool Calling for Multimodal Safety",
+      "authors": [
+        "Tiancheng He",
+        "Kun Wang",
+        "Qiankun Li",
+        "Zhigang Zeng"
+      ],
+      "abstract": "Summary: SaFeR-ToolKit targets two problems in vision-language assistants: complying with harmful multimodal requests and rejecting benign ones. Its approach makes the steps behind a safety judgment explicit instead of training only the final reply. A planning stage defines the assistant's role, permitted perception, reasoning, and decision operations, and the allowed transitions between them. The answering stage then records a structured sequence of virtual tool calls before responding. The authors train one model through supervised tuning, preference optimization, and reinforcement learning, with the last stage rewarding appropriate tool use. They introduce 31,654 training examples and a separate 1,000-example evaluation set. Experiments with the 3B and 7B Qwen2.5-VL models report stronger safety, helpfulness, and reasoning discipline while maintaining performance on general tasks.",
+      "image": {
+        "src": "images/publications/upload-03b5c2ff-7126-4f16-bde2-3945f2487dfb.png",
+        "alt": "Original SaFeR-ToolKit framework showing perception, reasoning, and decision tools, selectable topologies, and the SFT, DPO, and GRPO training pipeline.",
+        "width": 2200,
+        "height": 905
+      },
+      "links": [
+        {
+          "kind": "paper",
+          "label": "AACL-IJCNLP 2026 · arXiv",
+          "href": "https://arxiv.org/abs/2603.02635"
+        }
+      ]
+    },
+    {
+      "id": "paper-f8c3d117-7ce3-40ce-9efe-d6d8a2e0ea66",
+      "title": "Safety-Aware Rollouts with Self-Reflection and Structured Rewards",
+      "authors": [
+        "Kun Wang",
+        "Tiancheng He",
+        "Zhigang Zeng"
+      ],
+      "abstract": "Multimodal Large Reasoning Models (MLRMs) demonstrate impressive cross-modal reasoning but often amplify safety risks under adversarial or unsafe prompts, a phenomenon called the Reasoning Tax. Existing defenses mainly act at the output level and do not constrain the reasoning process, leaving models exposed to implicit risks.\n\nIn this paper, we propose SaFeR-VLM, a safety-aligned reinforcement learning framework that embeds safety directly into multimodal reasoning. The framework integrates four components: (I) QI-Safe-10K, a curated dataset emphasizing safety-critical and reasoning-sensitive cases; (II) safety-aware rollout, where unsafe generations undergo reflection and correction instead of being discarded; (III) structured reward modeling with multi-dimensional weighted criteria and explicit penalties for hallucinations and contradictions; and (IV) GRPO optimization, which reinforces both safe and corrected trajectories. This unified design shifts safety from a passive safeguard to an active driver of reasoning, enabling scalable and generalizable safety-aware reasoning.\n\nSaFeR-VLM further demonstrates robustness against both explicit and implicit risks, supporting dynamic and interpretable safety decisions beyond surface-level filtering. SaFeR-VLM-3B achieves average safety and helpfulness pass rates of 70.15 and 78.97 across six benchmarks, outperforming both size-matched baselines and models more than 10× larger, including Skywork-R1V3-38B, Qwen2.5VL-72B, and GLM4.5V-106B. SaFeR-VLM-7B further improves safety, surpassing GPT-5-mini and Gemini-2.5-Flash by 6.47 and 16.76 points, respectively.\n\nOur code is available at https://github.com/HarveyYi/SaFeR-VLM.",
+      "image": {
+        "src": "images/publications/upload-52b545ed-9847-4114-9777-6167014b90ab.png",
+        "alt": "SaFeR-VLM framework showing QI-Safe-10K construction, safety-aware rollout and correction, structured reward modeling, and GRPO optimization.",
+        "width": 1510,
+        "height": 728
+      },
+      "links": [
+        {
+          "kind": "code",
+          "label": "TPAMI 2026 · Code",
+          "href": "https://github.com/HarveyYi/SaFeR-VLM"
+        }
+      ]
     }
   ]
 }

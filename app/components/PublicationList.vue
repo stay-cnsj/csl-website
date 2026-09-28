@@ -57,7 +57,13 @@ function resolveImagePath(path: string) {
         >
           作者待补充
         </p>
-        <div class="publication-abstract">
+        <p
+          v-if="publication.venue || publication.year || publication.pages"
+          class="publication-citation"
+        >
+          {{ [publication.venue, publication.year, publication.pages ? `pp. ${publication.pages}` : ''].filter(Boolean).join(', ') }}.
+        </p>
+        <div v-if="publication.abstract.trim()" class="publication-abstract">
           <h4>Abstract</h4>
           <p>{{ publication.abstract }}</p>
         </div>
@@ -185,6 +191,14 @@ function resolveImagePath(path: string) {
 
 .publication-authors {
   margin: 0;
+  color: #555;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.publication-citation {
+  margin: 12px 0 0;
   color: #555;
   font-size: 0.94rem;
   line-height: 1.65;

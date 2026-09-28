@@ -15,6 +15,9 @@ export interface Publication {
   title: string;
   authors: string[];
   abstract: string;
+  venue?: string;
+  year?: number;
+  pages?: string;
   isPlaceholder?: boolean;
   image?: {
     src: string;

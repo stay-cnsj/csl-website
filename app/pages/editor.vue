@@ -110,8 +110,7 @@ function addPaper() {
     title: "",
     authors: [],
     abstract: "",
-    image: { src: "", alt: "" },
-    links: [{ kind: "paper", label: "论文", href: "" }],
+    links: [],
   });
   announce("填写内容后，先保存到草稿，再统一发布。");
 }
@@ -120,6 +119,11 @@ function getFormPaper(): Publication | null {
   const value = structuredClone(toRaw(form.value));
   value.title = value.title.trim();
   value.abstract = value.abstract.trim();
+  for (const field of ["venue", "pages"] as const) {
+    const text = value[field]?.trim();
+    if (text) value[field] = text;
+    else delete value[field];
+  }
   value.authors = authorsText.value
     .split("\n")
     .map((v) => v.trim())
@@ -132,6 +136,7 @@ function getFormPaper(): Publication | null {
   if (value.image) {
     value.image.src = value.image.src.trim();
     value.image.alt = value.image.alt.trim();
+    if (!value.image.src && !value.image.alt) delete value.image;
   }
   const errors = validatePublicationDocument({
     schemaVersion: 1,
@@ -655,7 +660,7 @@ onBeforeRouteLeave(
                     /><span v-else>添加论文配图</span>
                   </div>
                   <div>
-                    <label for="paper-image-file">论文图片</label
+                    <label for="paper-image-file">论文图片（可选）</label
                     ><input
                       id="paper-image-file"
                       type="file"
@@ -715,19 +720,44 @@ onBeforeRouteLeave(
                   placeholder="每行一位，按论文署名顺序填写"
                   :required="!form.isPlaceholder"
                 ></textarea>
-                <label for="paper-abstract">Abstract <span>*</span></label
+                <label for="paper-venue">会议 / 期刊（可选）</label
+                ><input
+                  id="paper-venue"
+                  v-model="form.venue"
+                  class="form-control"
+                  maxlength="500"
+                  placeholder="会议或期刊名称"
+                />
+                <label for="paper-year">年份（可选）</label
+                ><input
+                  id="paper-year"
+                  :value="form.year ?? ''"
+                  type="number"
+                  min="1000"
+                  max="9999"
+                  step="1"
+                  class="form-control"
+                  @input="form.year = ($event.target as HTMLInputElement).value ? Number(($event.target as HTMLInputElement).value) : undefined"
+                />
+                <label for="paper-pages">页码（可选）</label
+                ><input
+                  id="paper-pages"
+                  v-model="form.pages"
+                  class="form-control"
+                  maxlength="100"
+                  placeholder="例如 14222-14228"
+                />
+                <label for="paper-abstract">Abstract（可选）</label
                 ><textarea
                   id="paper-abstract"
                   v-model="form.abstract"
                   class="form-control abstract-input"
                   rows="8"
                   maxlength="20000"
-                  required
-                  placeholder="粘贴论文摘要，支持中文或英文"
+                  placeholder="有准确摘要时填写，支持中文或英文"
                 ></textarea>
                 <div class="links-heading">
-                  <label
-                    >相关链接 <span v-if="!form.isPlaceholder">*</span></label
+                  <label>相关链接（可选）</label
                   ><button
                     class="btn btn-sm btn-light"
                     type="button"
@@ -827,8 +857,13 @@ onBeforeRouteLeave(
                   "作者待补充"
                 }}
               </p>
-              <h4>Abstract</h4>
-              <p class="preview-abstract">{{ form.abstract }}</p>
+              <p v-if="form.venue || form.year || form.pages">
+                {{ [form.venue, form.year, form.pages ? `pp. ${form.pages}` : ''].filter(Boolean).join(', ') }}.
+              </p>
+              <template v-if="form.abstract.trim()">
+                <h4>Abstract</h4>
+                <p class="preview-abstract">{{ form.abstract }}</p>
+              </template>
               <span
                 v-for="(link, index) in form.links"
                 :key="index"

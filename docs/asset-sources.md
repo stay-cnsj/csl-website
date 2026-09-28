@@ -1,6 +1,7 @@
 # 视觉素材来源
 
-- `public/images/research-framework.png`：从用户提供的《华科网页制作.docx》提取的原图，1672 × 941，保留图内文字和完整比例。
+- `public/images/research-framework.svg`：用户提供的 `CSL_Research_Overview.svg` 原图，2560 × 1600，完整保留矢量内容，用于研究架构主图、放大查看和原图链接。
+- `public/images/research-framework.png`：早期从《华科网页制作.docx》提取的原图，1672 × 941，已由上述 SVG 替换展示。
 - `public/images/cognitive-brain.png`：内置 ImageGen 生成的原创概念插画，1448 × 1086。用于首页和内页页头，不代表真实研究成像或结果。
 - `public/fonts/`：Inter Tight，SIL Open Font License，许可证为同目录下的 `OFL.txt`。
 - 布局参考：https://www.evlab.mit.edu/ 。网站未复制该实验室的名称、Logo、人物、论文和脑部艺术原图。

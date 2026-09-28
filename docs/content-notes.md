@@ -16,7 +16,7 @@
 
 ## 图片与视觉素材
 
-- 研究架构图来自原始 Word 文档，PNG，1672 × 941，网站文件为 `public/images/research-framework.png`。保留完整比例与图内文字，可通过研究架构页面放大查看。
+- 研究架构图已按用户要求替换为 `CSL_Research_Overview.svg`，网站文件为 `public/images/research-framework.svg`，2560 × 1600。原图完整保留，可放大查看；研究架构整体排列在论文成果上方。早期 Word 中提取的 PNG 不再用于页面展示。
 - 首页及内页页头使用内置 ImageGen 生成的原创纤维脑部概念图 `public/images/cognitive-brain.png`（1448 × 1086），用于认知智能概念示意，并非真实研究结果。提示词与来源见 `docs/asset-sources.md`。
 - 两项论文占位配图为 `public/images/publications/` 下的原创 SVG 流程图（1200 × 760），图内标注“示意配图 · 论文占位”，并非论文原图或实验结果。
 - 成员照片为上述 13 份 DOCX 中的原始内嵌照片，保存于 `public/images/people/`。黄诗颖照片的归档 CRC 元数据异常，已恢复图像并完成解码与视觉检查。没有提供实验室实景、正式机构 Logo 或可用的新闻照片。

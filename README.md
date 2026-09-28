@@ -48,7 +48,7 @@ npm run generate
 - 研究方向页的新文案维护在同文件的 `research` 和 `researchTopics`，与首页基础信息分开。
 - 添加论文与研究成果：使用 [网页编辑器](https://stay-cnsj.github.io/csl-website/editor/)，支持增删改、排序、配图上传与多人并发检查；也可直接维护 `public/content/publications.json`。权限与步骤见 [研究成果维护](docs/publications.md)。
 - 人员介绍按负责人、博后、硕士、RA 分组，维护 `app/data/people.ts`，照片位于 `public/images/people/`。
-- 替换研究架构图：更新 `public/images/research-framework.png`，保留同名文件即可；如比例或尺寸改变，同时更新 `app/pages/framework.vue` 中的图片尺寸与替代文字。
+- 替换研究架构图：更新 `public/images/research-framework.svg`，保留同名文件即可；如比例或尺寸改变，同时更新 `app/pages/framework.vue` 中的图片尺寸与替代文字。研究架构展示在论文成果上方。
 - 调整颜色、字体、间距及响应式布局：编辑 `app/assets/css/main.css`。
 - 修改搜索结果中的标题与网站描述：检查 `nuxt.config.ts` 以及各页面的 `useSeoMeta`。
 - 增加新页面：在 `app/pages/` 添加页面，更新 `app/data/site.ts` 的导航，并在 `nuxt.config.ts` 的预渲染列表中加入路径。

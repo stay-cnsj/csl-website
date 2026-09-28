@@ -12,7 +12,7 @@ export interface ResearchTopic {
 
 // 网站基础信息来自「参考材料/华科网页制作.docx」。
 // 研究方向页文案依据 2026-09-25 提供的「参考材料/内容.docx」更新。
-// 原文为「拟下设」实验室，尚未提供论文、成员名单或联系方式。
+// 原文为「拟下设」实验室。成员资料维护在 people.ts，真实论文和联系方式尚未提供。
 export const site = {
   name: "认知大模型与数据智能",
   englishName: "Cognitive Large Models and Data Intelligence",

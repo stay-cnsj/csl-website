@@ -1,75 +1,71 @@
 # 研究成果维护
 
-成果数据统一维护在 `app/data/publications.ts`，展示组件为 `app/components/PublicationList.vue`。数组顺序就是网页顺序，可将最新成果放在最前面。
+论文内容统一保存在 `public/content/publications.json`，通过网页编辑器 `/editor/` 维护。线上访问时保留网站原有的基础路径，例如 `https://stay-cnsj.github.io/csl-website/editor/`。列表顺序就是网页展示顺序。
 
-目前参考材料未提供真实论文或成果记录。根据用户要求，页面先发布两项明确标注的占位示例，分别对应智能体训练与优化、科研智能体与科学发现。占位内容仅用于展示版式，不代表已发表成果；没有虚构作者、期刊、年份或论文链接。
+网站按“标题 → 作者 → Abstract → 论文及相关链接”展示每篇论文。桌面端图片与文字交替排列，手机端图片在前、正文在后。所有文字均按纯文本显示，不支持 HTML。
 
-收到真实论文后，直接替换这两条记录的内容与配图，并删除 `isPlaceholder: true`。如果删除所有记录，页面会显示“研究论文将陆续发布。”。
+目前两篇记录仍是明确标注的占位示例，分别对应智能体训练与优化、科研智能体与科学发现。占位摘要和配图仅用于说明主题与版式，不代表真实论文或实验结果。作者和链接为空时，页面显示“作者待补充”和“论文链接待补充”。发布真实论文时，请替换标题、作者、Abstract、配图与真实链接，并移除占位标记。
 
-## 添加一项成果
+## 通过网页编辑
 
-1. 准备经确认的论文标题、摘要说明、作者顺序、研究亮点和对外链接。
-2. 如有成果图，放到 `public/images/publications/`。图片使用实际图表、论文配图或经确认的研究示意图，填写真实尺寸与描述性替代文字。
-3. 在 `publications` 数组添加一个符合 `Publication` 类型的对象。
-4. 本地检查电脑与手机页面，然后运行 `npm run typecheck` 和 `npm run generate`。
+1. 打开 `/editor/`，读取当前论文列表。
+2. 新增、编辑或删除论文；调整顺序以决定主页的展示顺序。
+3. 按论文署名顺序填写作者，填写准确的 Abstract 和真实链接；上传论文配图并填写替代文字。图片与文字会在同一次提交中保存。
+4. 检查草稿和预览后，使用自己的 GitHub 令牌保存到仓库。
+5. 保存成功后，网站会自动构建并部署，通常约 1 分钟更新。部署完成前，线上页面仍可能显示旧内容。
 
-## 字段说明
+编辑器直接连接 GitHub，不需要网站后台服务器。修改目标固定为仓库 `stay-cnsj/csl-website` 的 `main` 分支。
 
-| 字段                           | 类型                                                     | 用法                                                     |
-| ------------------------------ | -------------------------------------------------------- | -------------------------------------------------------- |
-| `id`                           | `string`                                                 | 必填，唯一且稳定的标识，建议使用小写英文和短横线         |
-| `title`                        | `string`                                                 | 必填，真实论文或成果标题                                 |
-| `description`                  | `string`                                                 | 必填，简洁准确的成果说明；空字符串不会显示正文段落       |
-| `authors`                      | `string[]`                                               | 必填，按论文署名顺序填写；空数组不显示作者栏             |
-| `isPlaceholder`                | `boolean`                                                | 可选；为 `true` 时明确显示占位标记，正式论文应删除此字段 |
-| `image`                        | 对象                                                     | 可选；没有图片时直接省略，不显示替代图                   |
-| `image.src`                    | `string`                                                 | 图片路径，推荐 `images/publications/文件名.png`          |
-| `image.alt`                    | `string`                                                 | 图片内容的文字说明                                       |
-| `image.width` / `image.height` | `number`                                                 | 可选，建议填写图片实际像素尺寸，保持比例并减少页面跳动   |
-| `highlights`                   | `{ label: string; text: string }[]`                      | 可选，逐条列出亮点；`label` 加粗，`text` 为说明          |
-| `venue`                        | `string`                                                 | 可选，会议或期刊名称                                     |
-| `year`                         | `number`                                                 | 可选，发表年份                                           |
-| `links`                        | `PublicationLink[]`                                      | 可选，只填写真实且有效的链接                             |
-| `links[].kind`                 | `"paper"`、`"code"`、`"project"`、`"dataset"`、`"other"` | 链接类别                                                 |
-| `links[].label`                | `string`                                                 | 网页显示的链接文字，例如“论文”或“代码”                   |
-| `links[].href`                 | `string`                                                 | 对外 HTTPS 地址或本地文件路径                            |
+## 协作者权限
 
-正式论文的图片可以省略；亮点、年份、期刊与链接也只在提供实际内容时展示。占位记录通过 `isPlaceholder` 统一显示提示，不在作者、期刊和链接字段中填入虚构内容。
+每位编辑者都应使用自己的 GitHub 账号，并先成为 `stay-cnsj/csl-website` 仓库中具有写入权限的协作者，接受仓库邀请后再连接。
 
-本地资源路径相对于 `public/`：例如 `public/papers/result.pdf` 在数据中填写为 `papers/result.pdf`。组件会自动添加 GitHub Pages 的仓库基础路径，请勿手动写入 `/仓库名/` 或 `public/`。外部图片与链接使用完整 HTTPS 地址。链接不会依据类别自动生成，必须填写可访问的 `href`。
+- 仓库所有者 `stay-cnsj`：可创建 fine-grained token，仅选择本仓库，授予 **Contents: Read and write**。
+- 当前个人仓库的其他协作者：GitHub 暂不支持其使用 fine-grained token 访问此类仓库，需要使用 classic token，选择 **public_repo**。此权限覆盖该账号可写入的公开仓库，无法只限制为本仓库；建议设置较短有效期。官方说明见 [fine-grained token 限制](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#fine-grained-personal-access-tokens-limitations)。
 
-## 数据模板
+编辑器不是独立邮箱/密码账号系统。GitHub 的仓库权限负责鉴权，拥有写入权限的协作者也可修改仓库其他内容。不要向不应具备仓库写入权限的人发放编辑权限，不要共用所有者令牌。
 
-下面只展示字段结构，**不是实际论文，不应原样复制到正式数据**。请替换所有示例文字、日期、链接和文件名；没有的可选字段直接删除。
+在编辑器中输入个人令牌即可保存。令牌仅保存在当前页面的运行内存中，不写入仓库、浏览器持久存储或论文数据；刷新或关闭页面后需要重新输入。不要共享令牌，也不要把令牌填写在作者、摘要或链接等内容字段中。
 
-```ts
+## 同时编辑与保存
+
+编辑器保存时会读取仓库最新内容并检查是否发生变化。不同论文的独立修改可与最新版本合并；同一篇论文发生冲突时会阻止覆盖，并保留当前草稿，供编辑者核对后处理。保存不是强制覆盖远端分支。
+
+新上传的图片和论文 JSON 通过一次原子提交保存，避免出现正文已经更新而图片尚未提交的中间状态。保存成功表示 GitHub 已收到提交，网站更新仍需等待自动部署完成。
+
+## 数据结构
+
+`app/data/publications.ts` 导出类型并加载 JSON，使用与编辑器相同的 `parsePublicationDocument` 校验后提供给展示组件。数据格式如下：
+
+```json
 {
-  id: "replace-with-real-publication-id",
-  title: "替换为经确认的真实论文标题",
-  description: "替换为真实研究内容、方法及结论的简要说明。",
-  authors: ["替换为第一作者", "替换为其他作者"],
-  image: {
-    src: "images/publications/replace-with-real-figure.png",
-    alt: "替换为图片准确的内容描述",
-    width: 1200, // 替换为实际图片宽度
-    height: 800, // 替换为实际图片高度
-  },
-  highlights: [
-    {
-      label: "替换为研究亮点标题",
-      text: "替换为有论文依据的说明，不添加未经验证的效果或数据。",
-    },
-  ],
-  venue: "替换为真实会议或期刊",
-  year: 2026, // 替换为实际发表年份
-  links: [
-    {
-      kind: "paper",
-      label: "论文",
-      href: "https://example.com/replace-with-real-paper-link",
-    },
-  ],
+  "schemaVersion": 1,
+  "publications": []
 }
 ```
 
-桌面端的有图成果按行交替显示图片与文字；手机端统一先显示图片，再显示正文。标题区由页面负责，组件只负责成果列表。
+| 字段                           | 类型                                           | 用法                                                             |
+| ------------------------------ | ---------------------------------------------- | ---------------------------------------------------------------- |
+| `schemaVersion`                | `1`                                            | 必填，当前数据格式版本                                           |
+| `publications`                 | `Publication[]`                                | 必填，数组顺序就是网页展示顺序；空数组显示“研究论文将陆续发布。” |
+| `publications[].id`            | `string`                                       | 必填，唯一且稳定，使用小写字母、数字和短横线                     |
+| `title`                        | `string`                                       | 必填，准确的论文标题                                             |
+| `authors`                      | `string[]`                                     | 必填，按实际署名顺序填写；仅占位记录可为空                       |
+| `abstract`                     | `string`                                       | 必填，准确的论文摘要；保留文字换行                               |
+| `isPlaceholder`                | `boolean`                                      | 可选；`true` 显示占位提示，正式论文应删除该标记                  |
+| `image`                        | 对象                                           | 类型允许省略；编辑器要求正式论文提供配图                         |
+| `image.src`                    | `string`                                       | 已上传图片的本地路径，或有效 HTTPS 图片地址                      |
+| `image.alt`                    | `string`                                       | 配图的准确文字说明                                               |
+| `image.width` / `image.height` | `number`                                       | 可选，实际像素尺寸                                               |
+| `links`                        | `PublicationLink[]`                            | 必填；仅占位记录可为空                                           |
+| `links[].kind`                 | `paper`、`code`、`project`、`dataset`、`other` | 链接类别                                                         |
+| `links[].label`                | `string`                                       | 显示文字，例如“论文”或“代码”                                     |
+| `links[].href`                 | `string`                                       | 真实、完整的 HTTPS 地址                                          |
+
+不再使用 `description`、`highlights`、`venue` 或 `year` 字段。不要在缺少真实材料时填入虚构作者、链接、实验数据或发表信息。
+
+本地图片放在 `public/images/publications/`，数据中填写 `images/publications/文件名.png`；组件会添加网站基础路径，请勿手动写入 `public/` 或 `/csl-website/`。当前两张 SVG 是已有的占位流程图，正式论文应替换为经确认的论文配图。
+
+## 手动维护与检查
+
+也可直接编辑 JSON，并将图片加入对应目录。提交前检查桌面与手机的显示效果，运行 `npm run typecheck` 和 `npm run generate`。如需安装项目依赖，使用 `cnpm i --by=npm`，遵循仓库的 `package-lock.json`。

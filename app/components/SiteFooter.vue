@@ -35,7 +35,9 @@ const copyrightYear = useState("copyright-year", () =>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© {{ copyrightYear }} CSL</span><span>认知大模型与数据智能</span>
+        <span>© {{ copyrightYear }} CSL</span
+        ><NuxtLink to="/editor/">论文编辑</NuxtLink
+        ><span>认知大模型与数据智能</span>
       </div>
     </div>
   </footer>

@@ -28,6 +28,7 @@ npm run dev
 
 ```sh
 npm run typecheck
+npm test
 npm run generate
 ```
 
@@ -41,10 +42,12 @@ npm run generate
 | 研究方向   | `/research/`  | `app/pages/research.vue`  |
 | 研究架构   | `/framework/` | `app/pages/framework.vue` |
 | 关于实验室 | `/about/`     | `app/pages/about.vue`     |
+| 论文编辑   | `/editor/`    | `app/pages/editor.vue`    |
 
 - 修改实验室名称、方向介绍、研究主题、导航与架构说明：编辑 `app/data/site.ts`。
 - 研究方向页的新文案维护在同文件的 `research` 和 `researchTopics`，与首页基础信息分开。
-- 添加论文与研究成果：编辑 `app/data/publications.ts`，配图放到 `public/images/publications/`；字段与步骤见 [研究成果维护](docs/publications.md)。
+- 添加论文与研究成果：使用 [网页编辑器](https://stay-cnsj.github.io/csl-website/editor/)，支持增删改、排序、配图上传与多人并发检查；也可直接维护 `public/content/publications.json`。权限与步骤见 [研究成果维护](docs/publications.md)。
+- 人员介绍按负责人、博后、硕士、RA 分组，维护 `app/data/people.ts`，照片位于 `public/images/people/`。
 - 替换研究架构图：更新 `public/images/research-framework.png`，保留同名文件即可；如比例或尺寸改变，同时更新 `app/pages/framework.vue` 中的图片尺寸与替代文字。
 - 调整颜色、字体、间距及响应式布局：编辑 `app/assets/css/main.css`。
 - 修改搜索结果中的标题与网站描述：检查 `nuxt.config.ts` 以及各页面的 `useSeoMeta`。
@@ -73,7 +76,7 @@ npm run generate
 4. 打开 **Actions → Deploy website to GitHub Pages**。如果首次推送早于 Pages 设置，可点击 **Run workflow** 重新发布。
 5. 工作流成功后，从部署记录或 **Settings → Pages** 打开真实访问地址。
 
-后续向 `main` 推送修改会自动检查 TypeScript、生成静态页面并发布。工作流使用 Node.js 24 和 `cnpm i`，通过 GitHub 内置令牌部署，无需添加个人访问令牌。发布方式参照 [GitHub Pages 自定义工作流文档](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)。
+后续向 `main` 推送修改会自动检查 TypeScript、运行编辑安全检查、生成静态页面并发布。工作流使用 Node.js 24 和 `cnpm i`，通过 GitHub 内置令牌部署，工作流无需配置个人访问令牌；网页编辑者则使用自己的令牌提交内容。发布方式参照 [GitHub Pages 自定义工作流文档](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)。
 
 发布流程会自动根据仓库名设置 `NUXT_APP_BASE_URL`：账号站点使用 `/`，项目站点使用 `/<repo>/`。因此不需要为不同仓库手动修改源码中的链接。若希望本地检查项目子路径的构建，例如：
 

@@ -1,25 +1,30 @@
 <script setup lang="ts">
 import type { Publication } from "~/data/publications";
+import { isHttpsUrl, isSafeImageSource } from "~/utils/publicationValidation";
 
-defineProps<{ publications: Publication[] }>();
+const props = defineProps<{ publications: Publication[] }>();
 
 const asset = useAssetPath();
+const publicationRows = computed(() =>
+  props.publications.map((publication) => ({
+    ...publication,
+    image:
+      publication.image && isSafeImageSource(publication.image.src)
+        ? publication.image
+        : undefined,
+    links: publication.links.filter((link) => isHttpsUrl(link.href)),
+  })),
+);
 
-function resolvePath(path: string) {
-  return /^(?:https?:\/\/|mailto:|tel:|\/\/|#)/i.test(path)
-    ? path
-    : asset(path);
-}
-
-function isExternalLink(path: string) {
-  return /^(?:https?:)?\/\//i.test(path);
+function resolveImagePath(path: string) {
+  return isHttpsUrl(path) ? path : asset(path);
 }
 </script>
 
 <template>
-  <div v-if="publications.length" class="publication-list">
+  <div v-if="publicationRows.length" class="publication-list">
     <article
-      v-for="(publication, index) in publications"
+      v-for="(publication, index) in publicationRows"
       :key="publication.id"
       class="publication-row"
       :class="{
@@ -29,7 +34,7 @@ function isExternalLink(path: string) {
     >
       <figure v-if="publication.image" class="publication-image">
         <img
-          :src="resolvePath(publication.image.src)"
+          :src="resolveImagePath(publication.image.src)"
           :alt="publication.image.alt"
           :width="publication.image.width"
           :height="publication.image.height"
@@ -42,41 +47,22 @@ function isExternalLink(path: string) {
         <p v-if="publication.isPlaceholder" class="publication-placeholder">
           占位示例 · 待补充正式论文
         </p>
-        <p
-          v-if="publication.venue || publication.year"
-          class="publication-meta"
-        >
-          <span v-if="publication.venue">{{ publication.venue }}</span>
-          <span v-if="publication.venue && publication.year" aria-hidden="true">
-            ·
-          </span>
-          <span v-if="publication.year">{{ publication.year }}</span>
-        </p>
         <h3 class="publication-title">{{ publication.title }}</h3>
-        <p v-if="publication.description" class="publication-description">
-          {{ publication.description }}
-        </p>
-        <ul
-          v-if="publication.highlights?.length"
-          class="publication-highlights"
-        >
-          <li
-            v-for="(highlight, highlightIndex) in publication.highlights"
-            :key="highlightIndex"
-          >
-            <strong v-if="highlight.label">{{ highlight.label }}</strong>
-            <span v-if="highlight.label && highlight.text">：</span>
-            <span v-if="highlight.text">{{ highlight.text }}</span>
-          </li>
-        </ul>
         <p v-if="publication.authors.length" class="publication-authors">
           {{ publication.authors.join(", ") }}
         </p>
-        <p v-else-if="publication.isPlaceholder" class="publication-authors">
-          作者与发表信息待补充
+        <p
+          v-else-if="publication.isPlaceholder"
+          class="publication-authors publication-pending"
+        >
+          作者待补充
         </p>
+        <div class="publication-abstract">
+          <h4>Abstract</h4>
+          <p>{{ publication.abstract }}</p>
+        </div>
         <ul
-          v-if="publication.links?.length"
+          v-if="publication.links.length"
           class="publication-links"
           aria-label="成果相关链接"
         >
@@ -84,20 +70,18 @@ function isExternalLink(path: string) {
             v-for="link in publication.links"
             :key="`${link.kind}-${link.href}`"
           >
-            <a
-              :href="resolvePath(link.href)"
-              :target="isExternalLink(link.href) ? '_blank' : undefined"
-              :rel="
-                isExternalLink(link.href) ? 'noopener noreferrer' : undefined
-              "
-            >
+            <a :href="link.href" target="_blank" rel="noopener noreferrer">
               {{ link.label }}
-              <span v-if="isExternalLink(link.href)" aria-hidden="true">
-                ↗</span
-              >
+              <span aria-hidden="true"> ↗</span>
             </a>
           </li>
         </ul>
+        <p
+          v-else-if="publication.isPlaceholder"
+          class="publication-links-pending publication-pending"
+        >
+          论文链接待补充
+        </p>
       </div>
     </article>
   </div>
@@ -155,16 +139,6 @@ function isExternalLink(path: string) {
   min-width: 0;
 }
 
-.publication-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55em;
-  margin: 0 0 9px;
-  color: #686868;
-  font-size: 0.88rem;
-  line-height: 1.5;
-}
-
 .publication-placeholder {
   display: inline-block;
   margin: 0 0 14px;
@@ -188,39 +162,48 @@ function isExternalLink(path: string) {
   overflow-wrap: anywhere;
 }
 
-.publication-description,
-.publication-highlights {
-  margin: 0 0 20px;
+.publication-abstract {
+  margin: 24px 0 20px;
+}
+
+.publication-abstract h4 {
+  margin: 0 0 10px;
+  color: #080808;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.publication-abstract p {
+  margin: 0;
   color: #242424;
   font-size: 1rem;
   line-height: 1.85;
-}
-
-.publication-highlights {
-  padding-left: 1.25em;
-}
-
-.publication-highlights li + li {
-  margin-top: 7px;
-}
-
-.publication-highlights strong {
-  color: #080808;
-  font-weight: 700;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
 }
 
 .publication-authors {
-  margin: 24px 0 0;
-  color: #717171;
-  font-size: 0.87rem;
+  margin: 0;
+  color: #555;
+  font-size: 0.94rem;
   line-height: 1.65;
-  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.publication-pending {
+  color: #777;
+  font-size: 0.87rem;
+}
+
+.publication-links-pending {
+  margin: 15px 0 0;
+  line-height: 1.6;
 }
 
 .publication-links {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
   gap: 8px 20px;
   padding: 0;
   margin: 15px 0 0;

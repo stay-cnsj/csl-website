@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "publications": [
+    {
+      "id": "placeholder-agent-training",
+      "title": "智能体训练与优化：从任务学习到持续演进",
+      "authors": [],
+      "abstract": "本条为论文展示占位，主题取自实验室研究方向。后续将以正式论文摘要与配图替换，介绍智能体在训练、反馈与持续学习方面的研究工作。以下内容仅展示主题与排版，不代表已发表成果。",
+      "isPlaceholder": true,
+      "image": {
+        "src": "images/publications/agent-training-placeholder.svg",
+        "alt": "智能体训练流程示意配图，展示数据与任务、训练与反馈、记忆与更新；用于论文占位",
+        "width": 1200,
+        "height": 760
+      },
+      "links": []
+    },
+    {
+      "id": "placeholder-science-agent",
+      "title": "科研智能体与科学发现：从问题到实验反馈",
+      "authors": [],
+      "abstract": "本条为论文展示占位，主题对应 AI4S 与科学发现方向。后续将以正式论文材料替换，介绍科研智能体在问题分析、假设生成与实验验证中的研究工作。配图为概念流程示意，不包含真实实验结果。",
+      "isPlaceholder": true,
+      "image": {
+        "src": "images/publications/science-agent-placeholder.svg",
+        "alt": "科学发现流程示意配图，展示科学问题、假设生成、实验验证与结果分析；用于论文占位",
+        "width": 1200,
+        "height": 760
+      },
+      "links": []
+    }
+  ]
+}

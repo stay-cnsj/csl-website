@@ -36,6 +36,9 @@ jobs:
       - name: Check TypeScript
         run: npm run typecheck
 
+      - name: Check publication editing safeguards
+        run: npm test
+
       - name: Set repository base URL
         shell: bash
         run: |

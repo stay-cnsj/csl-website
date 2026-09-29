@@ -47,10 +47,10 @@ npm run generate
 
 导航按研究方向、研究人员、研究架构、研究成果排列。旧 `/about/` 访问会转到研究人员页，旧 `/framework/#publications` 会转到研究成果页。
 
-- 修改方向名称、介绍、研究主题、导航与架构说明：编辑 `app/data/site.ts`。当前方向名称为“认知大模型与数据智能体 / Cognitive Large Models and Data Intelligence Agent”，表述为曾志刚老师新开设的研究方向。
+- 修改方向名称、介绍、研究主题、导航与架构说明：编辑 `app/data/site.ts`。当前方向名称为“认知大模型与数据智能体 / Cognitive Large Models and Data Intelligence Agent”。
 - 研究方向页的新文案维护在同文件的 `research` 和 `researchTopics`，与首页基础信息分开。
 - 添加论文与研究成果：使用 [网页编辑器](https://stay-cnsj.github.io/csl-website/editor/)，支持增删改、排序、配图上传与多人并发检查；也可直接维护 `public/content/publications.json`。权限与步骤见 [研究成果维护](docs/publications.md)。
-- 人员介绍按研究团队、硕士、RA 分组，曾志刚老师、王琨、李乾坤在桌面端同一行并排展示。维护 `app/data/people.ts`，照片位于 `public/images/people/`。
+- 人员介绍按研究团队、硕士、RA 分组，曾志刚、王琨、李乾坤在桌面端同一行并排展示。维护 `app/data/people.ts`，照片位于 `public/images/people/`。
 - 替换研究架构图：更新 `public/images/research-framework.svg`，保留同名文件即可；如比例或尺寸改变，同时更新 `app/pages/framework.vue` 中的图片尺寸与替代文字。研究架构与研究成果分别展示在独立页面。
 - 调整颜色、字体、间距及响应式布局：编辑 `app/assets/css/main.css`。
 - 修改搜索结果中的标题与网站描述：检查 `nuxt.config.ts` 以及各页面的 `useSeoMeta`。

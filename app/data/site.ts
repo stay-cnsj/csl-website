@@ -12,13 +12,11 @@ export interface ResearchTopic {
 
 // 网站基础信息依据 2026-09-29 提供的「华科网页制作.docx」及用户确认更新。
 // 研究方向页文案依据 2026-09-25 提供的「参考材料/内容.docx」更新。
-// 当前为新开设研究方向。成员资料维护在 people.ts，论文由网页编辑器持续维护。
+// 成员资料维护在 people.ts，论文由网页编辑器持续维护。
 export const site = {
   name: "认知大模型与数据智能体",
   englishName: "Cognitive Large Models and Data Intelligence Agent",
   shortName: "CSL",
-  directionStatus: "新开设方向",
-  directionSummary: "本方向由曾志刚老师新开设。",
   introduction:
     "本方向以大模型为核心，融合认知科学与数据科学，探索智能系统如何从海量多模态数据中形成感知、记忆、联想、推理与决策能力。",
   focus:

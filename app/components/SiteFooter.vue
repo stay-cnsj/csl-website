@@ -15,9 +15,6 @@ const copyrightYear = useState("copyright-year", () =>
           <p class="footer-description">
             融合认知科学与数据科学<br />探索大模型与智能体的认知能力
           </p>
-          <p class="footer-direction">
-            {{ site.directionStatus }}<br />{{ site.directionSummary }}
-          </p>
         </div>
         <div class="col-md-5">
           <nav class="footer-links" aria-label="页脚导航">
@@ -30,8 +27,8 @@ const copyrightYear = useState("copyright-year", () =>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© {{ copyrightYear }} CSL</span
-        ><NuxtLink to="/editor/">论文编辑</NuxtLink><span>{{ site.name }}</span>
+        <span>© {{ copyrightYear }} CSL</span>
+        <span>{{ site.name }}</span>
       </div>
     </div>
   </footer>

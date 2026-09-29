@@ -28,9 +28,9 @@ export const peopleGroups: PeopleGroup[] = [
     people: [
       {
         id: "zeng-zhigang",
-        name: "曾志刚老师",
+        name: "曾志刚",
         biography: [
-          "华中科技大学人工智能与自动化学院教授、国家杰出青年科学基金获得者、教育部“长江学者”特聘教授、国家“万人计划”科技创新领军人才、IEEE Fellow",
+          "华中科技大学人工智能与自动化学院教授、IEEE Fellow",
         ],
         researchLabel: "研究方向（AI）",
         research: "智能体系统、AI安全、大模型优化与可解释性",
@@ -39,8 +39,7 @@ export const peopleGroups: PeopleGroup[] = [
           width: 536,
           height: 608,
         },
-        homepage:
-          "https://scholar.google.com/citations?user=BrJUTvoAAAAJ&hl=en",
+        homepage: "https://aia.hust.edu.cn/zhigangzeng/index.htm",
       },
       {
         id: "wang-kun",

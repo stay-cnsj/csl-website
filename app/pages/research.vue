@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { site, research, researchTopics } from "~/data/site";
+import { research, researchTopics } from "~/data/site";
 useSeoMeta({
   title: `研究方向 · ${research.name}`,
   description: research.introduction,
@@ -11,10 +11,8 @@ useSeoMeta({
     <PageBanner title="研究方向" english="Research" />
     <div class="research-columns">
       <section class="research-intro">
-        <p class="eyebrow">{{ site.directionStatus }}</p>
         <h2>{{ research.name }}</h2>
         <p class="section-english" lang="en">{{ research.englishName }}</p>
-        <p>{{ site.directionSummary }}</p>
         <p class="lead-copy">{{ research.introduction }}</p>
         <p v-for="paragraph in research.overview" :key="paragraph">
           {{ paragraph }}

@@ -17,7 +17,6 @@ useSeoMeta({ title: `${site.name} · CSL`, description: site.introduction });
         />
       </div>
       <div class="col-md-6 hero-copy">
-        <p class="eyebrow">{{ site.directionStatus }}</p>
         <h1 id="home-title">
           认知大模型<br />与<span class="gradient-text">数据智能体</span>
         </h1>

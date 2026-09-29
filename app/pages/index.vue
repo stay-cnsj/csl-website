@@ -17,11 +17,12 @@ useSeoMeta({ title: `${site.name} · CSL`, description: site.introduction });
         />
       </div>
       <div class="col-md-6 hero-copy">
+        <p class="eyebrow">{{ site.directionStatus }}</p>
         <h1 id="home-title">
-          认知大模型<br />与<span class="gradient-text">数据智能</span>
+          认知大模型<br />与<span class="gradient-text">数据智能体</span>
         </h1>
         <p class="hero-english" lang="en">
-          Cognitive Large Models<br />and Data Intelligence
+          Cognitive Large Models<br />and Data Intelligence Agent
         </p>
         <h2>
           探索智能系统的<br /><strong>认知</strong

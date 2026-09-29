@@ -10,16 +10,15 @@ export interface ResearchTopic {
   keywords: string[];
 }
 
-// 网站基础信息来自「参考材料/华科网页制作.docx」。
+// 网站基础信息依据 2026-09-29 提供的「华科网页制作.docx」及用户确认更新。
 // 研究方向页文案依据 2026-09-25 提供的「参考材料/内容.docx」更新。
-// 原文为「拟下设」实验室。成员资料维护在 people.ts，真实论文和联系方式尚未提供。
+// 当前为新开设研究方向。成员资料维护在 people.ts，论文由网页编辑器持续维护。
 export const site = {
-  name: "认知大模型与数据智能",
-  englishName: "Cognitive Large Models and Data Intelligence",
-  labName: "计算机科学实验室",
-  labEnglish: "Computer Science Lab",
+  name: "认知大模型与数据智能体",
+  englishName: "Cognitive Large Models and Data Intelligence Agent",
   shortName: "CSL",
-  principalInvestigator: "曾志刚教授",
+  directionStatus: "新开设方向",
+  directionSummary: "本方向由曾志刚老师新开设。",
   introduction:
     "本方向以大模型为核心，融合认知科学与数据科学，探索智能系统如何从海量多模态数据中形成感知、记忆、联想、推理与决策能力。",
   focus:
@@ -30,21 +29,20 @@ export const site = {
     "具体包括：大模型与智能体的机制可解释、数据质量与数据飞轮、多智能体协同与具身认知、模型安全与伦理治理等。",
   interdisciplinary:
     "该方向与类脑计算、智能自主无人系统、医学具身、世界模型、地球科学等方向交叉，面向科学发现、医疗健康、金融风控和自主无人系统等场景，构建数据驱动、认知启发、安全可信的通用大模型与数据智能新范式。",
-  laboratory:
-    "该方向拟下设计算机科学实验室（Computer Science Lab，简称 CSL），由曾志刚教授担任实验室负责人。",
 };
 
 export const navigation: NavigationItem[] = [
   { label: "研究方向", english: "Research", to: "/research/" },
+  { label: "研究人员", english: "Researchers", to: "/people/" },
   { label: "研究架构", english: "Framework", to: "/framework/" },
-  { label: "关于实验室", english: "About CSL", to: "/about/" },
+  { label: "研究成果", english: "Publications", to: "/publications/" },
 ];
 
 export const research = {
-  name: "认知大模型与数据智能体",
-  englishName: "Cognitive Large Models and Data Intelligence",
+  name: site.name,
+  englishName: site.englishName,
   introduction:
-    "Computer Science Lab (CSL) 以大模型与智能体为核心，融合认知科学、数据科学与类脑计算，研究智能系统如何从海量多模态数据与持续环境交互中形成感知、记忆、联想、推理、规划与决策能力，探索认知能力的形成机制及其与数据、知识和经验之间的关系，构建具备持续学习、自主执行与可信决策能力的认知大模型和数据智能体。",
+    "本方向以大模型与智能体为核心，融合认知科学、数据科学与类脑计算，研究智能系统如何从海量多模态数据与持续环境交互中形成感知、记忆、联想、推理、规划与决策能力，探索认知能力的形成机制及其与数据、知识和经验之间的关系，构建具备持续学习、自主执行与可信决策能力的认知大模型和数据智能体。",
   overview: [
     "重点研究大模型与智能体的认知架构、多模态数据融合、模型训练与自演进、持续学习与记忆机制、稀疏激活与高效计算，以及模型对齐、安全与机制可解释性。下游聚焦医学、金融、地球科学等场景落地。",
     "同时，借鉴人脑的记忆、联想与推理机制，开展大模型与智能体的机制可解释性研究，揭示知识表征、推理规划与决策行为的内在规律。在此基础上，面向科学问题提出、研究假设生成、实验设计与结果验证等科研环节，构建可解释、可验证、可持续演进的科研智能体，推动自动化科研与科学发现，形成“认知启发—机制解析—能力提升—科学探索”相互促进的研究体系。",

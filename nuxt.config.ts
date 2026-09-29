@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     baseURL,
     head: {
       htmlAttrs: { lang: "zh-CN" },
-      title: "认知大模型与数据智能 · CSL",
+      title: "认知大模型与数据智能体 · CSL",
       meta: [
         {
           name: "description",
@@ -24,7 +24,15 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ["/", "/research/", "/framework/", "/about/", "/editor/"],
+      routes: [
+        "/",
+        "/research/",
+        "/people/",
+        "/framework/",
+        "/publications/",
+        "/about/",
+        "/editor/",
+      ],
     },
   },
   typescript: { strict: true },

@@ -49,7 +49,7 @@ function safeHomepage(url: string | undefined) {
             :style="{
               objectPosition: person.portrait.position || 'center 30%',
             }"
-            :loading="group.layout === 'featured' ? 'eager' : 'lazy'"
+            :loading="group.layout === 'team' ? 'eager' : 'lazy'"
             decoding="async"
           />
         </div>
@@ -131,8 +131,9 @@ function safeHomepage(url: string | undefined) {
   gap: 44px 32px;
 }
 
-.people-list--featured {
-  grid-template-columns: minmax(0, 1fr);
+.people-list--team {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
 }
 
 .people-list--wide {
@@ -226,28 +227,29 @@ function safeHomepage(url: string | undefined) {
   font-size: 1.05rem;
 }
 
-.people-list--featured .person-card {
-  display: grid;
-  grid-template-columns: minmax(0, 250px) minmax(0, 1fr);
-  gap: clamp(32px, 5vw, 72px);
-  align-items: center;
+.people-list--team .person-card,
+.people-list--team .person-details {
+  display: flex;
+  flex-direction: column;
 }
 
-.people-list--featured .person-portrait {
-  margin-bottom: 0;
+.people-list--team .person-portrait {
+  flex-shrink: 0;
 }
 
-.people-list--featured .person-details {
-  max-width: 760px;
+.people-list--team .person-details {
+  flex: 1;
 }
 
-.people-list--featured h3 {
-  margin-bottom: 22px;
-  font-size: 2.05rem;
+.people-list--team .person-biography {
+  font-size: 0.92rem;
+  line-height: 1.8;
 }
 
-.people-list--featured .person-research {
-  font-size: 1rem;
+.people-list--team .person-homepage {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 22px;
 }
 
 .people-list--wide .person-card {
@@ -277,6 +279,10 @@ function safeHomepage(url: string | undefined) {
 }
 
 @media (max-width: 991.98px) {
+  .people-list--team {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .people-list--wide .person-card {
     display: block;
   }
@@ -297,18 +303,17 @@ function safeHomepage(url: string | undefined) {
     padding-bottom: 18px;
   }
 
-  .people-list--featured .person-card {
+  .people-list--team {
     grid-template-columns: minmax(0, 1fr);
-    gap: 27px;
+    gap: 44px;
   }
 
-  .people-list--featured .person-portrait {
-    width: min(100%, 250px);
+  .people-list--team .person-portrait {
+    width: min(100%, 320px);
   }
 
-  .people-list--featured h3 {
-    margin-bottom: 16px;
-    font-size: 1.85rem;
+  .people-list--team .person-details h3 {
+    font-size: 1.45rem;
   }
 
   .people-list--grid,

@@ -273,7 +273,7 @@ main:focus {
   line-height: 1.84;
   margin-bottom: 13px;
 }
-.footer-lab {
+.footer-direction {
   font-size: 15px;
   color: #555;
   line-height: 1.8;
@@ -544,10 +544,12 @@ figcaption {
     padding-left: 30px;
   }
 }
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .nav-english {
     display: none;
   }
+}
+@media (max-width: 991px) {
   .main-navigation {
     gap: 24px;
   }

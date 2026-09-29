@@ -1,12 +1,22 @@
 <script setup lang="ts">
 import { site, frameworkStages } from "~/data/site";
-import { publications } from "~/data/publications";
 const asset = useAssetPath();
+const route = useRoute();
 const imageDialog = useTemplateRef<HTMLDialogElement>("imageDialog");
 useSeoMeta({
-  title: `研究架构与成果 · ${site.name}`,
-  description: "认知大模型与数据智能研究架构、论文与研究成果。",
+  title: `研究架构 · ${site.name}`,
+  description: "认知大模型与数据智能体研究架构：数据驱动、认知启发、安全可信。",
 });
+// Keep previously shared publication links pointing to the new dedicated page.
+watch(
+  () => route.hash,
+  (hash) => {
+    if (hash === "#publications") {
+      void navigateTo("/publications/", { replace: true });
+    }
+  },
+  { immediate: true },
+);
 function openImage() {
   imageDialog.value?.showModal();
 }
@@ -17,7 +27,7 @@ function closeImage() {
 
 <template>
   <article class="interior-page framework-page">
-    <PageBanner title="研究架构与成果" english="Framework & Publications" />
+    <PageBanner title="研究架构" english="Framework" />
     <section
       id="framework"
       class="framework-overview"
@@ -62,17 +72,6 @@ function closeImage() {
         </div>
       </section>
     </section>
-    <section
-      id="publications"
-      class="publications-section"
-      aria-labelledby="publications-title"
-    >
-      <header class="publications-heading">
-        <p class="eyebrow">论文与研究成果</p>
-        <h2 id="publications-title" lang="en">Publication</h2>
-      </header>
-      <PublicationList :publications="publications" />
-    </section>
     <dialog
       ref="imageDialog"
       class="image-dialog"
@@ -109,25 +108,6 @@ function closeImage() {
 </template>
 
 <style scoped>
-.publications-section {
-  max-width: 1500px;
-  padding: 54px 4vw 0;
-  margin: 0 auto 76px;
-  border-top: 1px solid #e4e4e4;
-}
-.publications-heading {
-  margin-bottom: 48px;
-}
-.publications-heading .eyebrow {
-  margin-bottom: 8px;
-}
-.publications-heading h2 {
-  font-size: clamp(42px, 5.2vw, 72px);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.2;
-  margin: 0;
-}
 .framework-overview-heading {
   margin-bottom: 35px;
 }
@@ -141,13 +121,6 @@ function closeImage() {
   margin: 0;
 }
 @media (max-width: 767px) {
-  .publications-section {
-    padding: 36px 6vw 0;
-    margin-bottom: 44px;
-  }
-  .publications-heading {
-    margin-bottom: 28px;
-  }
   .framework-overview-heading h2 {
     font-size: 28px;
   }

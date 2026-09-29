@@ -23,7 +23,7 @@ function closeMenu() {
   >
     <NuxtLink class="site-brand" to="/" :aria-label="`${site.name}，返回首页`">
       <span class="brand-letters">CSL<span class="brand-dot">.</span></span>
-      <span class="brand-caption">COMPUTER SCIENCE LAB</span>
+      <span class="brand-caption">RESEARCH DIRECTION</span>
     </NuxtLink>
     <button
       ref="menuButton"

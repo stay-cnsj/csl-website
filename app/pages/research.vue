@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { research, researchTopics } from "~/data/site";
+import { site, research, researchTopics } from "~/data/site";
 useSeoMeta({
   title: `研究方向 · ${research.name}`,
   description: research.introduction,
@@ -11,8 +11,10 @@ useSeoMeta({
     <PageBanner title="研究方向" english="Research" />
     <div class="research-columns">
       <section class="research-intro">
+        <p class="eyebrow">{{ site.directionStatus }}</p>
         <h2>{{ research.name }}</h2>
         <p class="section-english" lang="en">{{ research.englishName }}</p>
+        <p>{{ site.directionSummary }}</p>
         <p class="lead-copy">{{ research.introduction }}</p>
         <p v-for="paragraph in research.overview" :key="paragraph">
           {{ paragraph }}
@@ -47,7 +49,7 @@ useSeoMeta({
         <h2>交叉研究与应用</h2>
         <p>{{ research.interdisciplinary }}</p>
         <NuxtLink class="text-link" to="/framework/"
-          >查看研究架构与成果 <span aria-hidden="true">↗</span></NuxtLink
+          >查看研究架构 <span aria-hidden="true">↗</span></NuxtLink
         >
       </div>
     </section>

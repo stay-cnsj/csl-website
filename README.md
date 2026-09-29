@@ -1,4 +1,4 @@
-# 认知大模型与数据智能网站
+# 认知大模型与数据智能体网站
 
 基于 Nuxt 4、Bootstrap 5 与 TypeScript 的研究方向网站，内容整理自《华科网页制作.docx》。视觉与页面布局参考 [MIT EvLab 网站](https://www.evlab.mit.edu/)，使用本项目的研究内容与图片。
 
@@ -36,19 +36,22 @@ npm run generate
 
 ## 页面与内容维护
 
-| 页面       | 路径          | 文件                      |
-| ---------- | ------------- | ------------------------- |
-| 首页       | `/`           | `app/pages/index.vue`     |
-| 研究方向   | `/research/`  | `app/pages/research.vue`  |
-| 研究架构   | `/framework/` | `app/pages/framework.vue` |
-| 关于实验室 | `/about/`     | `app/pages/about.vue`     |
-| 论文编辑   | `/editor/`    | `app/pages/editor.vue`    |
+| 页面     | 路径             | 文件                         |
+| -------- | ---------------- | ---------------------------- |
+| 首页     | `/`              | `app/pages/index.vue`        |
+| 研究方向 | `/research/`     | `app/pages/research.vue`     |
+| 研究人员 | `/people/`       | `app/pages/people.vue`       |
+| 研究架构 | `/framework/`    | `app/pages/framework.vue`    |
+| 研究成果 | `/publications/` | `app/pages/publications.vue` |
+| 论文编辑 | `/editor/`       | `app/pages/editor.vue`       |
 
-- 修改实验室名称、方向介绍、研究主题、导航与架构说明：编辑 `app/data/site.ts`。
+导航按研究方向、研究人员、研究架构、研究成果排列。旧 `/about/` 访问会转到研究人员页，旧 `/framework/#publications` 会转到研究成果页。
+
+- 修改方向名称、介绍、研究主题、导航与架构说明：编辑 `app/data/site.ts`。当前方向名称为“认知大模型与数据智能体 / Cognitive Large Models and Data Intelligence Agent”，表述为曾志刚老师新开设的研究方向。
 - 研究方向页的新文案维护在同文件的 `research` 和 `researchTopics`，与首页基础信息分开。
 - 添加论文与研究成果：使用 [网页编辑器](https://stay-cnsj.github.io/csl-website/editor/)，支持增删改、排序、配图上传与多人并发检查；也可直接维护 `public/content/publications.json`。权限与步骤见 [研究成果维护](docs/publications.md)。
-- 人员介绍按负责人、博后、硕士、RA 分组，维护 `app/data/people.ts`，照片位于 `public/images/people/`。
-- 替换研究架构图：更新 `public/images/research-framework.svg`，保留同名文件即可；如比例或尺寸改变，同时更新 `app/pages/framework.vue` 中的图片尺寸与替代文字。研究架构展示在论文成果上方。
+- 人员介绍按研究团队、硕士、RA 分组，曾志刚老师、王琨、李乾坤在桌面端同一行并排展示。维护 `app/data/people.ts`，照片位于 `public/images/people/`。
+- 替换研究架构图：更新 `public/images/research-framework.svg`，保留同名文件即可；如比例或尺寸改变，同时更新 `app/pages/framework.vue` 中的图片尺寸与替代文字。研究架构与研究成果分别展示在独立页面。
 - 调整颜色、字体、间距及响应式布局：编辑 `app/assets/css/main.css`。
 - 修改搜索结果中的标题与网站描述：检查 `nuxt.config.ts` 以及各页面的 `useSeoMeta`。
 - 增加新页面：在 `app/pages/` 添加页面，更新 `app/data/site.ts` 的导航，并在 `nuxt.config.ts` 的预渲染列表中加入路径。

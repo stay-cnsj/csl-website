@@ -10,27 +10,27 @@ export interface Person {
 }
 
 export interface PeopleGroup {
-  id: "leadership" | "postdocs" | "masters" | "research-assistants";
+  id: "research-team" | "masters" | "research-assistants";
   title: string;
   english: string;
-  layout: "featured" | "wide" | "grid";
+  layout: "team" | "wide" | "grid";
   people: Person[];
 }
 
 // 姓名、身份、研究方向与主页来自「参考材料/CSL-web」中的个人 DOCX。
-// 分组与顺序按本次提供的成员层级；个人身份保留原文表述。
+// 研究团队使用平等的展示层级；个人资料按用户确认内容保留。
 export const peopleGroups: PeopleGroup[] = [
   {
-    id: "leadership",
-    title: "负责人",
-    english: "LEADERSHIP",
-    layout: "featured",
+    id: "research-team",
+    title: "研究团队",
+    english: "RESEARCH TEAM",
+    layout: "team",
     people: [
       {
         id: "zeng-zhigang",
-        name: "曾志刚",
+        name: "曾志刚老师",
         biography: [
-          "华中科技大学教授、人工智能与自动化学院院长、国家杰出青年科学基金获得者、教育部“长江学者”特聘教授、国家“万人计划”科技创新领军人才、IEEE Fellow",
+          "华中科技大学人工智能与自动化学院教授、国家杰出青年科学基金获得者、教育部“长江学者”特聘教授、国家“万人计划”科技创新领军人才、IEEE Fellow",
         ],
         researchLabel: "研究方向（AI）",
         research: "智能体系统、AI安全、大模型优化与可解释性",
@@ -42,14 +42,6 @@ export const peopleGroups: PeopleGroup[] = [
         homepage:
           "https://scholar.google.com/citations?user=BrJUTvoAAAAJ&hl=en",
       },
-    ],
-  },
-  {
-    id: "postdocs",
-    title: "博后",
-    english: "POSTDOCTORAL RESEARCHERS",
-    layout: "wide",
-    people: [
       {
         id: "wang-kun",
         name: "王琨",

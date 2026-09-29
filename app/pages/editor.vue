@@ -419,9 +419,9 @@ onBeforeRouteLeave(
         <div>
           <p class="eyebrow">CSL / CONTENT STUDIO</p>
           <h2>让研究成果保持更新。</h2>
-          <p>编辑图片、标题、作者、Abstract 与链接，统一发布到研究架构页面。</p>
+          <p>编辑图片、标题、作者、Abstract 与链接，统一发布到研究成果页面。</p>
         </div>
-        <NuxtLink to="/framework/#publications" class="text-link"
+        <NuxtLink to="/publications/" class="text-link"
           >查看论文页面 ↗</NuxtLink
         >
       </header>
@@ -511,7 +511,7 @@ onBeforeRouteLeave(
           rel="noopener noreferrer"
           >查看发布进度 ↗</a
         ><a
-          :href="asset('framework/#publications')"
+          :href="asset('publications/')"
           target="_blank"
           rel="noopener noreferrer"
           >打开线上页面 ↗</a
